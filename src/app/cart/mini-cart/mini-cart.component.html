@@ -1,0 +1,47 @@
+<div class="popup_cart popup-dropdown" [routerLink]="['/cart']">
+  <ul></ul>
+  <div class="price_content">
+    <div class="cart-detailed-totals js-cart-detailed-totals">
+      <div
+        class="card-block cart-detailed-subtotals js-cart-detailed-subtotals"
+      >
+        <div class="cart-summary-line" id="cart-subtotal-products">
+          <span class="label js-subtotal"> {{cart?.length}} items </span>
+          <span class="value"> र. {{ totalAmount }} </span>
+          <!-- <span class="value"> $0.00 </span> -->
+        </div>
+      </div>
+
+      <div class="card-block cart-summary-totals js-cart-summary-totals">
+        <div class="cart-summary-line">
+          <span class="label">Total&nbsp;(tax excl.)</span>
+          <span class="value">र. {{ totalAmount }}</span>
+        </div>
+        <div class="cart-summary-line">
+          <span class="label">Tax&nbsp;(C.G.S.T incl.)</span>
+          <span class="value">र. {{ totalGstPrice/2 }}</span>
+        </div>
+        <div class="cart-summary-line">
+          <span class="label">Tax&nbsp;(S.G.S.T incl.)</span>
+          <span class="value">र. {{ totalGstPrice/2 }}</span>
+        </div>
+        <div class="cart-summary-line">
+          <span class="label">Delivery charge incl.</span>
+          <span class="value">र. {{ totalDeliveryCharge }}</span>
+        </div>
+        <div class="cart-summary-line cart-total">
+          <span class="label">Total (tax incl.)</span>
+          <span class="value">र.{{ totalAmount+ totalGstPrice + totalDeliveryCharge }}</span>
+        </div>
+
+        <!-- <div class="cart-summary-line">
+          <span class="label sub">Taxes:</span>
+          <span class="value sub">र.{{totalGstPrice}}</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="checkout" style="text-align: center;">
+    <a class="btn btn-primary w-75">Checkout</a>
+  </div>
+</div>

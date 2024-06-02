@@ -1,0 +1,156 @@
+<section id="wrapper">
+    <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+      <div class="container">
+        <header class="page-header">
+          <h1>
+            <header class="page-header">
+              <h1>My Profile</h1>
+            </header>
+          </h1>
+        </header>
+  
+        <nav data-depth="2" class="breadcrumb">
+          <ol>
+            <li>
+              <a [routerLink]="['/home']"><span>Home</span></a>
+            </li>
+  
+            <li>
+              <span>My Profile</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  
+    <aside id="notifications">
+      <div class="container"></div>
+    </aside>
+  
+    <div class="container">
+      <div class="section card-outer">
+        <div class="row">
+            <div class="col-md-6 text-center">
+              <div class="wrapper">
+                <img
+            [src]="profileDetails?.userPhoto"
+            class="image--cover"
+            (error)="setDefault($event)"
+          />
+              </div>
+          <form  enctype="multipart/form-data">
+            <div
+              class="custom-dropzone ml-1 center"
+              ngx-dropzone
+              [multiple]="false"
+              [accept]="'image/*'"
+              (change)="onSelect($event)"
+              >
+              <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp; Change Image
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <form [formGroup]="profileForm">
+                    <div class="row">
+                      <div class="col-md-12" style="text-align: right;">
+                        <div class="elementor-widget-container">
+                          <div class="pos-account pos-header-element">
+                            <a class="pointer">
+                              <i *ngIf="!editProfile" class="fa fa-pencil-square-o" (click)="editProfile=true" data-toggle="tooltip" data-placement="top" title="Edit profile" style="font-size: 18px;" aria-hidden="true"></i>
+                              <i *ngIf="editProfile" class="fa fa-check" (click)="editProfile=false;resetForm()" data-toggle="tooltip" data-placement="top" title="Close Edit" style="font-size: 18px;" aria-hidden="true"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile-field">
+                      <div class="row">
+                        <span class="label col-md-2 text-left">Name:</span>
+                        <span *ngIf="!editProfile">{{profileDetails?.name}}</span>
+                          <div class="col-md-6" *ngIf="editProfile">
+                            <input
+                              id="field-email"
+                              class="form-control"
+                              name="name"
+                              formControlName="name"
+                              type="text"
+                              required
+                            />
+                          </div>
+                          <div class="col-md-10 text-center text-danger">
+                            {{ formErrors.name }}
+                          </div>
+                        </div>
+                    </div>
+                    <div class="profile-field">
+                      <div class="row">
+                        <span class="label col-md-2 text-left">Email:</span>
+                        <span *ngIf="!editProfile">{{profileDetails?.email}}</span>
+                          <div class="col-md-6" *ngIf="editProfile">
+                            <input
+                              id="field-email"
+                              class="form-control"
+                              name="email"
+                              formControlName="email"
+                              type="email"
+                              required
+                            />
+                          </div>
+                          <div class="col-md-10 text-center text-danger">
+                            {{ formErrors.email }}
+                          </div>
+                        </div>
+                    </div>
+                    <div class="profile-field">
+                      <div class="row">
+                        <span class="label col-md-2 text-left">Phone:</span>
+                        <span *ngIf="!editProfile">{{profileDetails?.phoneNo}}</span>
+                            <div class="col-md-6" *ngIf="editProfile">
+                              <input
+                                id="field-email"
+                                class="form-control"
+                                name="phoneNo"
+                                formControlName="phoneNo"
+                                value=""
+                                required
+                              />
+                            </div>
+                            <div class="col-md-10 text-center text-danger">
+                              {{ formErrors.phoneNo }}
+                            </div>
+                          </div>
+                    </div>
+                    <div class="profile-field" *ngIf="editProfile">
+                      <div class="row text-center">
+                        <button
+                        class="btn btn-primary form-control-submit"
+                        data-link-action="save-customer"
+                        (click)="saveProfileInfo()"
+                      >
+                        <span> Save </span>
+                      </button> 
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+  
+      <div class="row row-wrapper" style="width: 75%; margin: 0 auto">
+        <div id="content-wrapper" class="js-content-wrapper col-xs-12">
+          <section id="main">
+            <footer class="page-footer">
+              <!-- Footer content -->
+            </footer>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  </ngx-spinner>
+  

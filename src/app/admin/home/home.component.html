@@ -1,0 +1,143 @@
+<div class="container p-4">
+    <div class="p-2">
+        <h1 class="text-warning">Dashboard</h1>
+    </div>
+    <mat-grid-list cols="3" rowHeight="8:3">
+        <mat-grid-tile>
+            <mat-card class="example-card" [routerLink]="['/admin/dashboard/addcategory']">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-book fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Categories</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Active Categories</span>
+                        <span>: {{dashboard.activeCategory}}</span>
+                    </div>
+                    <div class="ml-3">
+                        <span>
+                            In-Active Categories
+                        </span>
+                        <span>: {{dashboard.inActiveCategory}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card" [routerLink]="['/admin/dashboard/addsubcategory']">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-book fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Sub-Categories</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Active Sub-Categories</span>
+                        <span>: {{dashboard.activeSubCategory}}</span>
+                    </div>
+                    <div class="ml-3">
+                        <span>
+                            In-Active Sub-Categories
+                        </span>
+                        <span>: {{dashboard.inActiveSubCategory}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card" [routerLink]="['/admin/dashboard/product']">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-book fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Products</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Active Products</span>
+                        <span>: {{dashboard.activeProduct}}</span>
+                    </div>
+                    <div class="ml-3">
+                        <span>
+                            In-Active Products
+                        </span>
+                        <span>: {{dashboard.inActiveProduct}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>    
+    </mat-grid-list>
+    <mat-grid-list cols="3" rowHeight="8:3">
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-shopping-cart fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Carts</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Active Carts</span>
+                        <span>: {{dashboard.activeCartData}}</span>
+                    </div>
+                    <div class="ml-3">
+                        <span>
+                            Cart-Item Ordered
+                        </span>
+                        <span>: {{dashboard.inActiveCartData}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card" [routerLink]="['/admin/dashboard/order']">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-shopping-bag fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Orders</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Order Delevered</span>
+                        <span>: {{dashboard.orderCreated}}</span>
+                    </div>
+                    <br />
+                    <!-- <div class="ml-3">
+                        <span>
+                            Order Failed
+                        </span>
+                        <span>: {{dashboard.orderFailed}}</span>
+                    </div> -->
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card" [routerLink]="['/admin/dashboard/users']">
+                <mat-card-header>
+                    <div>
+                        <i class="fa fa-user fa-sze" aria-hidden="true"></i> <span class="fa-sze ml-2">Users</span> 
+                    </div>
+                </mat-card-header>
+                <div class="hr"></div>
+                <mat-card-content>
+                    <div class="ml-3">
+                        <span>Users</span>
+                        <span>: {{dashboard.user}}</span>
+                    </div>
+                    <div class="ml-3">
+                        <span>
+                            Admin
+                        </span>
+                        <span>: {{dashboard.admin}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>    
+    </mat-grid-list>
+    
+</div>

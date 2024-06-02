@@ -1,0 +1,78 @@
+.example-card {
+  width: 60vw;
+  margin-bottom: 8px;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(2, 2, 2, 0.356)
+}
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card{
+  padding: 0;
+}
+.backgr{
+  /* background-image: url('../../assets/img/logo/adminlogin.jpg'); */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.example-full-width {
+  width: 26vw;
+  /* margin-top: 40px; */
+}
+.mat-icon-heading {
+  /* font-size: 50px; */
+  color: blue;
+}
+button{
+  width: 23vw;
+}
+
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.example-full-width-main{
+  width: 35%;
+  /* background: #deffe6; */
+  /* border: 1px solid black; */
+}
+h2 {
+  text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+}
+
+@media (max-width: 767px) {
+  .example-full-width {
+    width: 36vw;
+    /* margin-top: 40px; */
+  }
+}
+
+::ng-deep .mat-form-field-label{
+  text-align: left !important;
+}
+.backgr-admin{
+  /* background-image: url(../../assets/img/cms/images.jpeg); */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ::ng-deep .mat-input-element {
+  color: white !important
+} */
+*{
+  box-sizing: border-box !important;
+}

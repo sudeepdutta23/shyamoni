@@ -1,0 +1,13 @@
+.weight-header{
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 40vw;
+}
+
+.example-full-width-weight{
+    width: 100% !important;
+}
+
+::ng-deep .mat-form-field-label{
+    text-align: left !important;
+  }

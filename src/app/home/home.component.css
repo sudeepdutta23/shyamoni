@@ -1,0 +1,61 @@
+.animation1 {
+  -webkit-transition-duration: 500ms !important;
+  -moz-transition-duration: 500ms !important;
+  -o-transition-duration: 500ms !important;
+  transition-duration: 500ms !important;
+}
+
+@media (max-width: 1024px) {
+  .elementor-row.nowrap {
+    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .elementor-image-box-title {
+    font-size: 10px !important;
+  }
+  .elementor-image-box-description {
+    font-size: 9px !important;
+  }
+}
+
+.new-Arr {
+  color: #101111;
+  font-size: 40px;
+  font-weight: 600;
+  font-family: "Jost", sans-serif;
+}
+.new-Arr-desc {
+  font-size: 28px;
+  font-family: "Great Vibes", sans-serif;
+  font-weight: 400;
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .mobile-view-center-icon {
+    margin-top: -10px;
+  }
+  .elementor-widget-image-box .elementor-image-box-wrapper {
+    width: 90%;
+  }
+  .elementor-8020103 .elementor-element.elementor-element-yyflgnx {
+    /* border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #ebebeb;
+    margin-top: 0px;
+    margin-bottom: 90px; */
+    padding: 4px 0px 4px 0px;
+  }
+  .elementor-8020103 .elementor-element.elementor-element-yyflgnx{
+    margin-bottom: 25px;
+  }
+  .new-Arr {
+    color: #101111;
+    font-size: 27px;
+    font-weight: 600;
+    font-family: "Jost", sans-serif;
+  }
+}

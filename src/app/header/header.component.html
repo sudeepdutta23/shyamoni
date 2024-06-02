@@ -1,0 +1,31 @@
+<header id="header" class="use-sticky">
+  <div class="elementor elementor-7020103">
+    <div class="elementor-inner">
+      <div class="elementor-section-wrap">
+        <app-large-screen
+        [menu]="categoryMenu"
+        [showMiniCart]="showMiniCart"
+        [numberOfCartItems]="numberOfCartItems"
+        [cartBadgeShow]="cartBadgeShow"
+        [userToken]="userToken"
+        (logoutEvent)="logout()"
+        (categoryClickEvent)="categoryClick($event)"
+        (subCategoryClickEvent)="subCategoryClick($event)"
+        *ngIf="categoryMenu"></app-large-screen>
+        <app-small-screen
+        [menu]="categoryMenu"
+        [showMiniCart]="showMiniCart"
+        [numberOfCartItems]="numberOfCartItems"
+        [cartBadgeShow]="cartBadgeShow"
+        [userToken]="userToken"
+        (logoutEvent)="logout()"
+        (categoryClickEvent)="categoryClick($event)"
+        (subCategoryClickEvent)="subCategoryClick($event)"
+        *ngIf="categoryMenu"
+        ></app-small-screen>
+      </div>
+    </div>
+  </div>
+</header>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

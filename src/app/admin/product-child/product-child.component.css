@@ -1,0 +1,31 @@
+.updateWeight{
+    border: 2px solid darkgrey;
+    border-radius: 10px;
+    padding-top: 17px;
+  }
+
+  ::ng-deep .mat-form-field-label{
+    text-align: left !important;
+  }
+
+  .fs{
+    padding: 10px 0 0 15px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .images_parent{
+    position: relative;
+  }
+
+  .images_parent img { display: block; }
+
+  .images_parent .deleteIcon{
+    position: absolute; 
+    bottom:50%; 
+    left:50%;
+  }

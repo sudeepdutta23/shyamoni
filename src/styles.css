@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: "Jost",sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+html, body { height: 100%; }
+
+.slick-slider .slick-next {
+    right: 1.375rem !important;
+}
+
+.slick-slider .slick-prev {
+    left: 1.375rem !important;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.container-margin{
+    margin-bottom: 4rem;
+}
+.justify-text{
+    text-align: justify;
+}
+.slick-next.slick-arrow{
+    background: #ED2353 !important;
+    border: 1px solid #ED2353 !important;
+}
+.slick-prev.slick-arrow{
+    background: #ED2353 !important;
+    border: 1px solid #ED2353 !important;
+}
+
+.icon::before {
+    display: inline-block;
+    margin-right: .5em;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}

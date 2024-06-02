@@ -1,0 +1,43 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.mat-drawer-inner-container{
+    width: 30vw !important;
+}
+
+.left-nav{
+  background-color: #4e73df;
+}
+
+.example-full-width {
+  width: 50vw;
+}
+.sidebar-item{
+  padding: 1rem;
+  width: 100%;
+  color: white;
+  font-size: 20px
+}
+.sidebar-item:hover{
+  background-color: #7498ff52;
+  cursor: pointer;
+}
+.dashboard-item{
+  width: 100%;
+  background-color: darkorange;
+  border: 4px solid white;
+  text-align: center;
+}

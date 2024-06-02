@@ -1,0 +1,229 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+    <div class="container">
+      <header class="page-header">
+        <h1>Create an account</h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="['/home']"><span>Home</span></a>
+          </li>
+
+          <li>
+            <span>Create an account</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container" style="width: 75%">
+    <div class="row row-wrapper">
+      <div id="content-wrapper" class="js-content-wrapper col-xs-12">
+        <section id="main">
+          <div id="content" class="page-content card card-block">
+            <section class="register-form">
+              <p class="text-center">
+                Already have an account?
+                <a routerLink="/login">Log in instead!</a>
+              </p>
+
+              <form [formGroup]="signUpForm" class="js-customer-form">
+                <div class="text-center">
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-firstname"
+                    >
+                      Name
+                    </label>
+                    <div class="col-md-8">
+                      <input
+                        id="field-firstname"
+                        class="form-control"
+                        name="firstname"
+                        formControlName="name"
+                        type="text"
+                        value=""
+                        required
+                      />
+                    </div>
+
+                    <div
+                      class="col-md-2 form-control-comment text-danger"
+                      *ngIf="formErrors.name"
+                    >
+                      {{ formErrors.name }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-email"
+                    >
+                      Phone No.
+                    </label>
+                    <div class="col-md-8">
+                      <input
+                        id="field-email"
+                        class="form-control"
+                        formControlName="phoneNo"
+                        name="number"
+                        type="number"
+                        value=""
+                        required
+                      />
+                    </div>
+
+                    <div
+                      class="col-md-2 form-control-comment text-danger"
+                      *ngIf="formErrors.phoneNo"
+                    >
+                      {{ formErrors.phoneNo }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-email"
+                    >
+                      Email
+                    </label>
+                    <div class="col-md-8">
+                      <input
+                        id="field-email"
+                        class="form-control"
+                        formControlName="email"
+                        name="email"
+                        type="email"
+                        value=""
+                        required
+                      />
+                    </div>
+
+                    <div
+                      class="col-md-2 form-control-comment text-danger"
+                      *ngIf="formErrors.email"
+                    >
+                      {{ formErrors.email }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-password"
+                    >
+                      Password
+                    </label>
+                    <div class="col-md-8">
+                      <div class="input-group js-parent-focus">
+                        <input
+                          id="field-password"
+                          class="form-control js-child-focus js-visible-password"
+                          name="password"
+                          formControlName="password"
+                          [type]="passtype"
+                          value=""
+                          pattern=".{5,}"
+                          required
+                        />
+                        <span class="input-group-btn">
+                          <button
+                            class="btn"
+                            data-action="show-password"
+                            data-text-show="Show"
+                            data-text-hide="Hide"
+                            (click)="changePassIcon(1)"
+                          >
+                            {{passtype == "text" ? "Hide" : "Show"}}
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      class="col-md-2 form-control-comment text-danger"
+                      *ngIf="formErrors.password"
+                    >
+                      {{ formErrors.password }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-password"
+                    >
+                      Confirm Password
+                    </label>
+                    <div class="col-md-8">
+                      <div class="input-group js-parent-focus">
+                        <input
+                          id="field-password"
+                          class="form-control js-child-focus js-visible-password"
+                          name="password"
+                          [type]="passtype2"
+                          formControlName="cpassword"
+                          value=""
+                          pattern=".{5,}"
+                          required
+                        />
+                        <span class="input-group-btn">
+                          <button
+                            class="btn"
+                            data-action="show-password"
+                            data-text-show="Show"
+                            data-text-hide="Hide"
+                            (click)="changePassIcon(2)"
+                          >
+                            {{passtype2 == "text" ? "Hide" : "Show"}}
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      class="col-md-2 form-control-comment text-danger"
+                    >
+                      <span *ngIf="formErrors.cpassword">{{ formErrors.cpassword }}</span>
+                      <span *ngIf="!passAndCpassSame && signUpForm.get('cpassword')?.value">Password and confirm password not match</span>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="form-footer clearfix">
+                  <input type="hidden" name="submitCreate" value="1" />
+
+                  <button
+                    class="btn btn-primary form-control-submit float-xs-right"
+                    data-link-action="save-customer"
+                    (click)="signUp()"
+                    [disabled]="!passAndCpassSame || signUpForm.invalid"
+                  >
+                    <span> Save </span>
+                  </button>
+                </footer>
+              </form>
+            </section>
+          </div>
+
+          <footer class="page-footer">
+            
+          </footer>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

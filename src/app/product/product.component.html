@@ -1,0 +1,771 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+    <div class="container">
+      <header class="page-header">
+        <h1></h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+          <li>
+            <a routerLink="/home"><span>Home</span></a>
+          </li>
+
+          <li>
+            <span>{{ productDetails?.productName }}</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container">
+    <div class="row row-wrapper">
+      <div id="content-wrapper" class="js-content-wrapper col-xs-12">
+        <section id="main" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="url" content="3-fresh-orange-nagpur.html" />
+
+          <div class="row product-container product-layout1">
+            <div class="col-md-6">
+              <section class="page-content" id="content">
+                <div class="images-container left-vertical">
+                  <ul
+                    class="product-images slick-block slick-initialized slick-slider slick-vertical"
+                    data-item="4"
+                    style=""
+                  >
+                    <div class="slick-list draggable" style="height: 304px">
+                      <div
+                        class="slick-track"
+                        style="
+                          opacity: 1;
+                          height: 304px;
+                          transform: translate3d(0px, 0px, 0px);
+                        "
+                      >
+                        <div
+                          class="slick-slide slick-active"
+                          [ngClass]="{'slick-current is-active': currentImageIndex === i}"
+                          data-slick-index="0"
+                          aria-hidden="false"
+                          style="width: 60px"
+                          *ngFor="let img of productDetails?.product_image; let i = index"
+                        >
+                          <div>
+                            <div
+                              class="image-item"
+                              style="width: 100%; display: inline-block"
+                            >
+                              <img
+                                class="thumb js-thumb selected"
+                                [src]="img.ImagePath"
+                                (click)="clickedImage(img.ImagePath,i)"
+                                alt=""
+                                title=""
+                                width="100"
+                                itemprop="image"
+                                (error)="setDefault($event)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+
+                  <div class="product-cover-container">
+
+                    <div
+                      class="product-cover slick-block slick-initialized slick-slider"
+                    >
+                      <button
+                        class="slick-prev slick-arrow slick-disabled"
+                        aria-label="Previous"
+                        type="button"
+                        aria-disabled="true"
+                        style=""
+                        (click)="previousImage()"
+                      >
+                        Previous
+                      </button>
+                      <div class="slick-list draggable">
+                        <div
+                          class="slick-track"
+                          style="
+                            opacity: 1;
+                            width: 1130px;
+                            transform: translate3d(0px, 0px, 0px);
+                          "
+                        >
+                          <div
+                            class="slick-slide slick-current slick-active"
+                            data-slick-index="0"
+                            aria-hidden="false"
+                            style="width: 282.5px"
+                          >
+                            <div>
+                              <div
+                                class="cover-item"
+                                style="width: 100%; display: inline-block"
+                              >
+                                <div
+                                  class="easyzoom easyzoom--overlay is-ready"
+                                >
+                                    <img
+                                      class="image-width"
+                                      [src]="currentImage"
+                                      alt=""
+                                      title=""
+                                      itemprop="image"
+                                      (error)="setDefault($event)"
+                                    />
+                                    <!-- <lib-ngx-image-zoom
+                                      [thumbImage]="currentImage"
+                                      [fullImage]="currentImage"
+                                      [magnification]="5"
+                                      [enableScrollZoom]="true"
+                                      [enableLens]="false"
+                                      zoomMode="toggle-click"
+                                  ></lib-ngx-image-zoom> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        class="slick-next slick-arrow"
+                        aria-label="Next"
+                        type="button"
+                        style=""
+                        aria-disabled="false"
+                        (click)="nextImage()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="col-md-6">
+              <div style="display: flex; justify-content: space-between;">
+                <h1 class="h1 namne_details">
+                  {{ productDetails?.productName }}
+                </h1>
+                <a class="pointer" style="display: flex; flex-direction: column; align-items: center;" 
+                [matMenuTriggerFor]="menu"
+                >
+                    <i class="fa fa-share" aria-hidden="true"></i>
+                    <span class="current-price-value share-icon">Share</span>
+                </a>
+              </div>
+
+              <div
+                id="product_comments_block_extra"
+                class="no-print"
+                itemprop="aggregateRating"
+                itemscope
+                itemtype="https://schema.org/AggregateRating"
+              >
+                <div class="comments_note clearfix">
+                  <i *ngFor="let rating of [].constructor(productDetails?.stars)" style="color: #f0f029;" class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <!-- .comments_note -->
+
+                <ul class="comments_advices">
+                  <li>
+                    <a
+                      class="reviews"
+                      (click)="currentTab = 'Reviews'; navigateToElem()"
+                    >
+                    <i class="fa fa-comment" aria-hidden="true"></i> Read reviews (<span itemprop="reviewCount">{{comments && comments?.length}}</span>)
+                    </a>
+                  </li>
+                  <li>
+                    <a class="open-comment-form" (click)="openCommentModal()">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Write a review
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--  /Module ProductComments -->
+
+              <div class="product-prices js-product-prices">
+                <div class="product-discount">
+                  <span class="regular-price"> र. {{ costPrice }} </span>
+                </div>
+                <div class="product-price h5 has-discount">
+                  <div class="current-price">
+                    <span class="current-price-value" content="39.9">
+                      र. {{ sellingPrice }}
+                    </span>
+                    <span class="discount discount-percentage"
+                      >Save {{ 100 - (sellingPrice / costPrice) * 100 | number : '1.2-2'}}%</span
+                    >
+                  </div>
+                </div>
+
+                <div class="tax-shipping-delivery-label"></div>
+              </div>
+
+              <div class="product-information">
+                <div
+                  id="product-description-short-3"
+                  class="product-description"
+                >
+                  <p>
+                    {{ productDetails?.shortDesc }}
+                  </p>
+                </div>
+
+                <div class="product-actions">
+                  <form
+                    id="add-to-cart-or-refresh"
+                  >
+                    <input
+                      type="hidden"
+                      name="token"
+                      value="44de839971e67a062fc114b478c66f62"
+                    />
+                    <input
+                      type="hidden"
+                      name="id_product"
+                      value="3"
+                      id="product_page_product_id"
+                    />
+                    <input
+                      type="hidden"
+                      name="id_customization"
+                      value="0"
+                      id="product_customization_id"
+                    />
+
+                    <div class="product-variants js-product-variants">
+                      <div class="product-variants js-product-variants">
+                        <div class="clearfix product-variants-item">
+                          <span class="control-label">Weight : </span>
+                          <ul id="group_4">
+                            <li
+                              class="input-container float-xs-left"
+                              *ngFor="
+                                let item of productWeight;
+                                let i= index
+                              "
+                            >
+                              <label [ngStyle]="{ 'border' : sellingPrice == item?.specialPrice ? '1px solid red' : '' }">
+                                <input
+                                  class="input-radio"
+                                  type="radio"
+                                  data-product-attribute="4"
+                                  name="group[4]"
+                                  value="22"
+                                  title="100g"
+                                  (click)="changedWeight(item.weight)"
+                                />
+                                <span class="radio-label"
+                                  >{{ item?.weight }}g</span
+                                >
+                              </label>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <section
+                      class="product-discounts js-product-discounts"
+                    ></section>
+
+                    <div class="product-add-to-cart js-product-add-to-cart">
+                      <span class="control-label">Quantity</span>
+
+                      <div class="product-quantity clearfix">
+                        <div class="qty">
+                          <div class="input-group bootstrap-touchspin">
+                            <span
+                              class="input-group-addon bootstrap-touchspin-prefix"
+                              style="display: none"
+                            >
+                            </span>
+                            <input
+                              type="number"
+                              name="qty"
+                              id="quantity_wanted"
+                              inputmode="numeric"
+                              pattern="[0-9]*"
+                              value="{{ numberOfItems }}"
+                              min="1"
+                              disabled
+                              class="input-group form-controsql"
+                              aria-label="Quantity"
+                              style="display: block"
+                            /><span
+                              class="input-group-addon bootstrap-touchspin-postfix"
+                              style="display: none"
+                            ></span
+                            >
+                            <!-- <span class="input-group-btn-vertical"
+                              ><button
+                                class="btn btn-touchspin js-touchspin bootstrap-touchspin-up"
+                                type="button"
+                                (click)="addItem()"
+                              >
+                              <i
+                                  class="fa fa-plus"
+                                  style="font-size: 10px;"
+                                  aria-hidden="true"
+                                ></i></button
+                              ><button
+                                class="btn btn-touchspin js-touchspin bootstrap-touchspin-down"
+                                type="button"
+                                (click)="removeItem()"
+                              >
+                              <i
+                                  class="fa fa-minus"
+                                  style="font-size: 10px;"
+                                  aria-hidden="true"
+                                ></i></button
+                            ></span> -->
+                          </div>
+                        </div>
+
+                        <div class="add">
+                          <button
+                            class="btn btn-primary add-to-cart"
+                            data-button-action="add-to-cart"
+                            type="submit"
+                            (click)="addToCart()"
+                          >
+                            <i class="material-icons shopping-cart">&#xE547;</i>
+                            Add to cart
+                          </button>
+                        </div>
+                        <!-- <div class="buy">
+                            <button
+                              class="btn btn-primary buy-now"
+                              data-button-action="buy-now"
+                              type="submit"
+                            >
+                              <i class="icon-rt-cart-outline"></i> Buy now
+                            </button>
+                          </div> -->
+                      </div>
+
+                      <span
+                        id="product-availability"
+                        class="js-product-availability"
+                      >
+                      </span>
+
+                      <p
+                        class="product-minimal-quantity js-product-minimal-quantity"
+                      ></p>
+                    </div>
+
+                    <div
+                      class="product-additional-info js-product-additional-info"
+                    >
+
+                    </div>
+                  </form>
+                </div>
+
+                <div class="blockreassurance_product">
+                  <div>
+                    <span class="item-product">
+                      <i class="fa fa-truck" style="font-size: 25px;" aria-hidden="true"></i>
+                      &nbsp;
+                    </span>
+                    <span class="block-title" style="color: #000000"
+                      >Fast Shipping </span
+                    >
+                    <!-- <p style="color: #000000; margin: 0px;">On all orders.</p> -->
+                  </div>
+                  <div>
+                    <span class="item-product">
+                      <i class="fa fa-sticky-note-o" style="font-size: 25px;" aria-hidden="true"></i>
+                      &nbsp;
+                    </span>
+                    <span class="block-title" style="color: #000000"
+                      >Prompt Delivery</span
+                    >
+                    <!-- <p style="color: #000000; margin: 0px;">
+                      Usually dispatched within 24 hours
+                    </p> -->
+                  </div>
+                  <!-- <div>
+                    <span class="item-product">
+                      <i class="fa fa-shield" style="font-size: 25px;" aria-hidden="true"></i>
+                      &nbsp;
+                    </span>
+                    <span class="block-title" style="color: #000000"
+                      >Security Policy</span
+                    >
+                    <p style="color: #000000; margin: 0px;">
+                      Be secure for a system, organization or other entity
+                    </p>
+                  </div> -->
+                  <div class="clearfix"></div>
+                </div>
+                <div class="payment-detail">
+                  <img src="../../assets/img/cms/payment.png" alt="" />
+                  <p>Guaranteed Safe &amp; Secure Checkout</p>
+                </div>
+              </div>
+            </div>
+            <div id="tabs" class="col-md-12">
+              <div class="tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      [ngClass]="currentTab === 'Description' ? 'active' : ''"
+                      data-toggle="tab"
+                      style="cursor: pointer"
+                      role="tab"
+                      (click)="currentTab = 'Description'"
+                      aria-controls="description"
+                      aria-selected="true"
+                      >Description</a
+                    >
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      [ngClass]="
+                        currentTab === 'Product Details' ? 'active' : ''
+                      "
+                      (click)="currentTab = 'Product Details'"
+                      data-toggle="tab"
+                      role="tab"
+                      aria-controls="product-details"
+                      >Product Details</a
+                    >
+                  </li> -->
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      style="cursor: pointer"
+                      [ngClass]="currentTab === 'Reviews' ? 'active' : ''"
+                      (click)="currentTab = 'Reviews'"
+                      data-toggle="tab"
+                      >Reviews</a
+                    >
+                  </li>
+                </ul>
+
+                <div class="tab-content" id="tab-content">
+                  <div
+                    class="tab-pane fade in"
+                    [ngClass]="currentTab === 'Description' ? 'active' : ''"
+                    id="description"
+                    role="tabpanel"
+                  >
+                    <div
+                      class="product-description"
+                      [innerHTML]="longDesc"
+                    ></div>
+                  </div>
+
+                  <!-- <div
+                    class="tab-pane fade in"
+                    [ngClass]="
+                    currentTab === 'Product Details' ? 'active' : ''
+                  "
+                    id="product-details"
+                    role="tabpanel"
+                  >
+                    <div class="product-manufacturer">
+                      <a href="../brand/3-manufacturer-3.html">
+                        <img
+                          src="../../img/m/3.jpg"
+                          class="img img-thumbnail manufacturer-logo"
+                          alt="manufacturer 3"
+                        />
+                      </a>
+                    </div>
+                    <div class="product-reference">
+                      <label class="label">Reference </label>
+                      <span itemprop="sku">demo_6</span>
+                    </div>
+
+                    <div class="product-quantities">
+                      <label class="label">In stock</label>
+                      <span data-stock="900" data-allow-oosp="0"
+                        >900 Items</span
+                      >
+                    </div>
+
+                    <div class="product-out-of-stock"></div>
+
+                    <section class="product-features">
+                      <p class="h6">Data sheet</p>
+                      <dl class="data-sheet">
+                        <dt class="name">Composition</dt>
+                        <dd class="value">
+                          Ceramic<br />
+                          Matt paper
+                        </dd>
+                        <dt class="name">Color</dt>
+                        <dd class="value">Multi color</dd>
+                      </dl>
+                    </section>
+                  </div> -->
+
+                  <!-- <script type="text/javascript">
+                    var posproductcomments_controller_url =
+                      "../module/posproductcomments/default.html";
+                    var confirm_report_message =
+                      "Are you sure that you want to report this comment?";
+                    var secure_key = "31a4a04873b58fcb50b870a2e7bef718";
+                    var posproductcomments_url_rewrite = "1";
+                    var productcomment_added = "Your comment has been added!";
+                    var productcomment_added_moderation =
+                      "Your comment has been submitted and will be available once approved by a moderator.";
+                    var productcomment_title = "New comment";
+                    var productcomment_ok = "OK";
+                    var moderation_active = 1;
+                  </script> -->
+                  <div
+                    id="product_comments_block_tab"
+                    class="tab-pane fade in"
+                    [ngClass]="currentTab === 'Reviews' ? 'active' : ''"
+                  >
+                    <!-- <h2 id="navigate_here" class="reviews-title">
+                      Customer Reviews
+                    </h2> -->
+                    <div
+                      class="reviews-header flex-layout space-between center-vertical"
+                    >
+                      <div class="rating_aggregate">
+                        <!-- <div class="star_content clearfix">
+                          <span class="rating_star" style="width: 100%"></span>
+                        </div> -->
+                        <!-- <span class="nb-comments">Based on 5 reviews</span> -->
+                        <h2 id="navigate_here" class="reviews-title">
+                          Customer Reviews
+                        </h2>
+                      </div>
+                      <a
+                        id="new_comment_tab_btn"
+                        class="open-comment-form btn btn-secondary"
+                        (click)="openCommentModal()"
+                        >Write your review !</a
+                      >
+                    </div>
+                    <div class="reviews-content">
+                      <div
+                        class="comment clearfix"
+                        *ngFor="let comment of comments"
+                      >
+                        <div class="comment_author">
+                          <div class="star_content clearfix">
+                            <i *ngFor="let rating of [].constructor(comment?.userRating || 0)" style="color: #f0f029;" class="fa fa-star" aria-hidden="true"></i>
+                          </div>
+                          <div class="comment_author_infos">
+                            <span class="author-reviews">{{
+                              comment?.user_name
+                            }}</span>
+                            <span>&nbsp; on &nbsp;</span>
+                            <span>{{ comment?.created_at | date }}</span>
+                          </div>
+                        </div>
+                        <div class="comment_details">
+                          <h4 class="title_block">Best product</h4>
+                          <p>
+                            {{ comment?.comment }}
+                          </p>
+                          <ul>
+                            <li>0 out of 1 people found this review useful.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="modal fade"
+                    id="pos-product-comment-modal"
+                    role="dialog"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div id="new_comment_form">
+                            <form id="id_new_comment_form" action="#">
+                              <h2>Write your review</h2>
+                              <div class="row">
+                                <div class="product clearfix">
+                                  <img
+                                    [src]="currentImage"
+                                    [alt]="productDetails?.productName"
+                                  />
+                                  <div class="product_desc">
+                                    <p class="product_name">
+                                      {{productDetails?.productName}}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="new_comment_form_content">
+                                  <div
+                                    id="new_comment_form_error"
+                                    class="error"
+                                    style="display: none; padding: 15px 25px"
+                                  >
+                                    <ul></ul>
+                                  </div>
+                                  <ul id="criterions_list">
+                                    <li>
+                                      <label>Quality</label>
+                                      <div class="star_content">
+                                        <div style="display: flex">
+                                          <div
+                                            *ngFor="
+                                              let ratingId of ratingArr;
+                                              index as i
+                                            "
+                                            [id]="'star_' + i"
+                                            style="
+                                              margin-left: 3px;
+                                              margin-right: 3px;
+                                            "
+                                            (click)="onClick(i + 1)"
+                                          >
+                                            <i
+                                              class="fa fa-star"
+                                              [ngStyle]="{
+                                                color: showIcon(i),
+                                                'font-size': '20px'
+                                              }"
+                                            ></i>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                    </li>
+                                  </ul>
+                                  <!-- <label for="comment_title"
+                                      >Title for your review<sup class="required"
+                                        >*</sup
+                                      ></label
+                                    >
+                                    <input
+                                      id="comment_title"
+                                      name="title"
+                                      class="form-control"
+                                      type="text"
+                                      value=""
+                                    />
+                                    <label
+                                      >Your name<sup class="required"
+                                        >*</sup
+                                      ></label
+                                    >
+                                    <input
+                                      id="commentCustomerName"
+                                      class="form-control"
+                                      name="customer_name"
+                                      type="text"
+                                      value=""
+                                    /> -->
+                                  <form [formGroup]="addFeedbackForm">
+                                    <label for="content"
+                                      >Your review<sup class="required"
+                                        >*</sup
+                                      ></label
+                                    >
+                                    <textarea
+                                      id="content"
+                                      class="form-control"
+                                      formControlName="comment"
+                                      name="content"
+                                    ></textarea>
+                                    <div id="new_comment_form_footer">
+                                      <p class="button_comment">
+                                        <button
+                                          type="button"
+                                          class="closefb btn btn-secondary"
+                                          data-dismiss="modal"
+                                          aria-label="Close"
+                                          (click)="closeCommentModal()"
+                                        >
+                                          <span aria-hidden="true"
+                                            >Cancel</span
+                                          ></button
+                                        >&nbsp;&nbsp;
+                                        <button
+                                          id="submitNewMessage"
+                                          class="btn btn-secondary"
+                                          name="submitMessage"
+                                          [disabled]="addFeedbackForm.invalid"
+                                          (click)="addUserComment()"
+                                        >
+                                          Send
+                                        </button>
+                                      </p>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="page-footer"></footer>
+        </section>
+      </div>
+    </div>
+
+    <section
+      class="products-accessories section-top clearfix slider-arrows-top"
+    >
+      <div class="pos_title">
+        <h2>You might also like</h2>
+      </div>
+      <div class="elementor-widget-container" style="margin-bottom: 10px">
+        <div class="pos-product-widget">
+          <div
+            class="slick-slider-block column-desktop-4 column-tablet-4 column-mobile-2"
+            data-slider_options='{"slidesToShow":4,"slidesToScroll":4,"autoplay":true,"infinite":false,"arrows":true,"dots":false,"rows":"2","autoplaySpeed":3000,"speed":500}'
+            data-slider_responsive='{"items_laptop":5,"items_landscape_tablet":4,"items_portrait_tablet":3,"items_landscape_mobile":2,"items_portrait_mobile":2,"items_small_mobile":1,"scroll":true}'
+          >
+            <!-- <app-product-card
+              *ngFor="let product of suggestedProducts"
+              [product]="product"
+            ></app-product-card> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <ngx-slick-carousel
+  class="carousel"
+  #slickModal1="slick-carousel"
+  [config]="slideConfig"
+>
+  <div ngxSlickItem *ngFor="let product of suggestedProducts" class="slide">
+     <app-product-card [product]="product"></app-product-card>
+  </div>
+</ngx-slick-carousel>
+  </div>
+</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>
+
+<mat-menu #menu="matMenu">
+    <a mat-menu-item [href]="currentLink"  target="_blank" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i> &nbsp; Share on Whatsapp</a> 
+    <a mat-menu-item (click)="copyToClipBoard()"><i class="fa fa-clipboard" aria-hidden="true"></i>&nbsp; Copy Link</a>
+</mat-menu>

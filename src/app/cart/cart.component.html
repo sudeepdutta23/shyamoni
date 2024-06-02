@@ -1,0 +1,352 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+    <div class="container">
+      <header class="page-header">
+        <h1>Shopping Cart</h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="['/home']"><span>Home</span></a>
+          </li>
+
+          <li>
+            <span>Cart</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container">
+    <div class="row row-wrapper">
+      <div id="content-wrapper" class="js-content-wrapper col-xs-12">
+        <section id="main">
+          <div class="cart-grid row">
+            <!-- Left Block: cart product informations & shpping -->
+            <div class="cart-grid-body col-xs-12 col-lg-8">
+              <!-- cart products detailed -->
+              <div class="card cart-container" *ngIf="cart">
+                <div class="card cart-overview js-cart">
+                  <table>
+                    <tr>
+                      <th colspan="5">
+                        <span>Shopping Cart</span>&nbsp;
+                        <span style="display: inline-block"
+                          >({{ cart && cart?.length }} items)</span
+                        >
+                      </th>
+                    </tr>
+                    <tr>
+                      <th class="text-center" colspan="2">Product Name</th>
+                      <th class="text-center">Quantity</th>
+                      <th class="text-center">Weight</th>
+                      <th class="text-center">Price</th>
+                    </tr>
+                    <tr *ngFor="let item of cart; let i = index">
+                      <td class="text-center">
+                        <i
+                          (click)="removeItemFromCart(item.id)"
+                          class="fa fa-times pointer"
+                          aria-hidden="true"
+                        ></i>
+                      </td>
+                      <td class="text-center">
+                        <img
+                          [src]="item.ImagePath"
+                          [alt]="item.product.productName"
+                          class="responsive-image"
+                          (error)="setDefault($event)"
+                        />
+                        <span>{{ item.product.productName }}</span>
+                      </td>
+                      <td class="text-center">
+                        <div class="qty">
+                          <span>{{ item.pieces }}</span>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <span> {{ item.product_weight.weight }}g </span>
+                      </td>
+                      <td class="text-center">
+                        <span> र.{{ item.product_weight.specialPrice }} </span>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <span class="no-items">
+                  </span>
+                </div>
+              </div>
+
+              <a class="label" [routerLink]="['/home']">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i
+                >&nbsp;&nbsp;Continue shopping
+              </a>
+
+            </div>
+            <div class="cart-grid-right col-xs-12 col-lg-4">
+              <div class="card cart-summary">
+                <div class="cart-detailed-totals js-cart-detailed-totals">
+                  <div
+                    class="card-block cart-detailed-subtotals js-cart-detailed-subtotals"
+                  >
+                    <div class="cart-summary-line" id="cart-subtotal-products">
+                      <span class="label js-subtotal">
+                        {{ cart?.length }} items
+                      </span>
+                      <span class="value"> र. {{ totalAmount }} </span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="card-block cart-summary-totals js-cart-summary-totals"
+                  >
+                    <div class="cart-summary-line">
+                      <span class="label">Total&nbsp;(tax excl.)</span>
+                      <span class="value">र. {{ totalAmount }}</span>
+                    </div>
+                    <div class="cart-summary-line">
+                      <span class="label">Tax&nbsp;(C.G.S.T incl.)</span>
+                      <span class="value">र. {{ totalGstPrice/2 | number : '2.0-2' }}</span>
+                    </div>
+                    <div class="cart-summary-line">
+                      <span class="label">Tax&nbsp;(S.G.S.T incl.)</span>
+                      <span class="value">र. {{ totalGstPrice/2 | number : '2.0-2' }}</span>
+                    </div>
+                    <div class="cart-summary-line">
+                      <span class="label">Delivery charge incl.</span>
+                      <span class="value">र. {{ totalDeliveryCharge | number : '2.0-2' }}</span>
+                    </div>
+                    <div class="cart-summary-line cart-total">
+                      <span class="label">Total (tax incl.)</span>
+                      <span class="value">र.{{ totalAmount+ totalGstPrice + totalDeliveryCharge }}</span>
+                    </div>
+
+                    <div class="cart-summary-line">
+                      <span class="label sub">Taxes:</span>
+                      <span class="value sub"> र.{{ totalGstPrice | number : '2.0-2' }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="checkout text-sm-center card-block">
+                  <button type="button" [disabled]="cart?.length==0" class="btn btn-primary" (click)="openCheckoutModal()">
+                    Checkout
+                  </button>
+                </div>
+              </div>
+
+              <div class="blockreassurance_product">
+                <div>
+                  <span class="item-product">
+                    <i class="fa fa-truck" style="font-size: 25px;" aria-hidden="true"></i>
+                    &nbsp;
+                  </span>
+                  <span class="block-title" style="color: #000000"
+                    >Fast Shipping </span
+                  >
+                </div>
+                <div style="padding: 15px 0 15px 0">
+                  <span class="item-product">
+                    <i class="fa fa-sticky-note-o" style="font-size: 25px;" aria-hidden="true"></i>
+                    &nbsp;
+                  </span>
+                  <span class="block-title" style="color: #000000"
+                    >Prompt Delivery</span
+                  >
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="payment-detail">
+                <img src="../../assets/img/cms/payment.png" alt="" />
+                <p>Guaranteed Safe &amp; Secure Checkout</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="checkout-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: flex-end;"><i style="padding: 10px 10px 0 0;" class="fa fa-times pointer" aria-hidden="true" (click)="closeCheckoutModal()"></i></div>
+      <div class="modal-body">
+        <div id="new_comment_form">
+          <form id="id_new_comment_form1" action="#">
+            <h2>Checkout</h2>
+            <div class="row">
+              <div class="product clearfix"></div>
+              <div class="new_comment_form_content">
+                <div class="address-body">
+                  <h6>Please select your shipping address</h6>
+                  <div class="radio-row" *ngFor="let addr of address; let i = index">
+                    <input class="radio-input" type="radio" [id]="addr.id" name="fav_language" [value]="addr.id" [checked]="i==0" (change)="changeSelectedAddress(addr.id)">
+                    <label class="radio-label" [for]="addr.id">{{ addr.address_line_1 }},{{ " " }}{{ addr.city }},{{ " "
+                    }}{{ addr.state }},{{ " " }}{{ addr.district }},{{ " "
+                    }}{{ addr.zip }}</label>
+                    <i class="fa fa-trash pointer" style="padding-right: 4px;" aria-hidden="true" (click)="deleteAddress(addr.id)"></i> &nbsp;<i class="fa fa-pencil pointer" aria-hidden="true" (click)="editAddress(addr)"></i>
+                  </div>
+                  <div *ngIf="address.length<3">
+                    <button
+                            class="btn btn-primary"
+                            data-button-action="add-to-cart"
+                            type="submit"
+                            (click)="openAddAddress()"
+                          >
+                            Add Address
+                          </button>
+                  </div>
+                </div>
+                <div style="margin-top: 10px; text-align: center;">
+                  <button
+                  class="btn btn-primary"
+                  data-button-action="add-to-cart"
+                  type="submit"
+                  (click)="checkout()"
+                  [disabled]="disablePaymentBtn || totalAddress===0"
+                >
+                  Pay Online <mat-spinner *ngIf="disablePaymentBtn" style="display: inline-block;" color="accent" diameter="20"></mat-spinner>
+                </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="address-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 100%;">
+      <div style="display: flex; justify-content: flex-end;"><i style="padding: 10px 10px 0 0;" class="fa fa-times pointer" aria-hidden="true" (click)="closeAddressModal()"></i></div>
+      <div class="modal-body">
+        <div id="new_comment_form">
+          <form id="id_new_comment_form2" class="addrModalContent" action="#">
+            <h2>Add Address</h2>
+            <div class="row">
+              <div class="new_comment_form_content">
+                <div class="add-address-body">
+                  <form [formGroup]="addAddressForm">
+                    <div class="text-center">
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        Address 1
+                        </div>
+                    <div class="col-md-8">
+                      <input formControlName="address_line_1" id="address1" type="text" placeholder="Address Line 1" min="10">
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        Address 2
+                        </div>
+                    <div class="col-md-8">
+                      <input formControlName="address_line_2" type="text" placeholder="Address Line 2" min="10">
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        Country
+                        </div>
+                    <div class="col-md-8">
+                      <input formControlName="country" type="text" placeholder="Select Country" min="10" [disabled]="true"/>
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        State
+                        </div>
+                    <div class="col-md-8">
+                      <select class="selectStyle" formControlName="stateID" name="states" (change)="getCities($event)">
+                        <option value="">Select state</option>
+                        <option *ngFor="let State of states" [value]="State?.id">{{State.state_name}}</option>
+                      </select>
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        City
+                        </div>
+                    <div class="col-md-8">
+                      <select class="selectStyle" formControlName="cityID" name="city">
+                        <option value="">Select city</option>
+                        <option *ngFor="let city of cities" [value]="city?.id">{{city.city_name}}</option>
+                      </select>
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        District
+                        </div>
+                    <div class="col-md-8">
+                      <input formControlName="district" type="text" placeholder="district" min="10">
+                    </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        Zip
+                        </div>
+                    <div class="col-md-8">
+                      <input formControlName="zip" type="text" placeholder="zip" min="10">
+                    </div>
+                      </div>
+                    </div>
+                    <div class="buttonAdd">
+                      <button
+                              class="btn btn-primary"
+                              data-button-action="add-to-cart"
+                              type="submit"
+                              *ngIf="!isEditAddress"
+                              [disabled]="addAddressForm.invalid" 
+                              (click)="addAddress()"
+                            >
+                              Submit
+                            </button>
+                            <button
+                            class="btn btn-primary"
+                            *ngIf="isEditAddress"
+                            data-button-action="add-to-cart"
+                            type="submit"
+                            [disabled]="addAddressForm.invalid" 
+                            (click)="editAddressSubmit()"
+                          >
+                            Update
+                          </button>
+                        <button
+                        style="margin-left: 8px;"
+                        class="btn btn-primary"
+                        data-button-action="add-to-cart"
+                        type="submit"
+                        (click)="closeAddressModal()"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  <p *ngIf="paymentOngoing" style="color: #cf292b;">Payment is processing...! Please wait for the transaction to complete.</p>
+</ngx-spinner>
+
+<app-razorpay *ngIf="env.paymentGateway == 'Razorpay'" (paymentClose)="paymentModalClose($event)" (paymentSuccess)="paymentCapture($event)" ></app-razorpay>
+<app-instamojo *ngIf="env.paymentGateway == 'Instamojo'" (paymentClose)="paymentModalClose($event)" (paymentSuccess)="paymentCapture($event)" ></app-instamojo>

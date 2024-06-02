@@ -1,0 +1,34 @@
+<div class="font-weight-bold ml-2 p-4 cursive h4 text-danger">
+    Shipment Tracking
+</div>
+<div>
+      <mat-vertical-stepper *ngIf="trackingDetails" [selectedIndex]="stepIndex" [linear]="isLinear" #stepper labelPosition="bottom">
+        <mat-step [completed]="true" [editable]="false" state="check">
+          <ng-template matStepLabel>Order is Placed</ng-template>
+          <div>
+            <mat-icon class="text-primary">check</mat-icon>Your Order is placed on {{data?.orderDate | date : 'mediumDate'}}
+          </div>
+        </mat-step>
+
+        <mat-step *ngFor="let data of trackingDetails; let i = index" [completed]="finalStatusIndex>=i" [editable]="false" state="check">
+          <ng-template matStepLabel>{{data?.status}}</ng-template>
+          <div>
+            {{data?.remark}}.
+          </div>
+        </mat-step>
+        <!-- <mat-step *ngIf="shippingStatus != 8" [editable]="false" [completed]="shippingStatus>=7">
+          <ng-template matStepLabel>Delivered</ng-template>
+          <div>
+            <mat-icon class="text-primary">how_to_reg</mat-icon>Your order is delevered, thanks and keep shopping from shyamoni
+          </div>
+        </mat-step>
+        <mat-step *ngIf="shippingStatus == 8" [editable]="false" [completed]="shippingStatus>7">
+          <ng-template matStepLabel>Cancelled</ng-template>
+          <div>
+            Your order is Cancelled, Please share your account on our contactUs page, you will be refunded within 6 business days 
+          </div>
+        </mat-step> -->
+      </mat-vertical-stepper>
+      <div class="center-aligned">
+        <mat-spinner color="accent" *ngIf="!trackingDetails"></mat-spinner>
+      </div>

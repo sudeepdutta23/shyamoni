@@ -1,0 +1,237 @@
+<section data-id="rulzcqu"
+id="rulzcqu"
+  class="parent elementor-element elementor-element-rulzcqu elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section-content-middle elementor-hidden-desktop elementor-section elementor-top-section"
+  data-element_type="section">
+  <div class="elementor-container elementor-column-gap-default">
+    <div class="elementor-row">
+      <div data-id="odznuqu"
+        class="elementor-element elementor-element-odznuqu elementor-sm-33 elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column">
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div data-id="injpton"
+              class="elementor-element elementor-element-injpton pewidth-inline elementor-widget elementor-widget-pos_menu"
+              data-settings='{"search_width":"inline"}' data-element_type="pos_menu.default">
+              <div class="elementor-widget-container">
+                <div id="menu-icon" [ngClass]="openSideMenu ? 'open-menu' : ''" (click)="openMenu()">
+                  <i #icon class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+                <div [ngClass]="
+                    openSideMenu
+                      ? 'menu-mobile-content box-menu'
+                      : 'menu-mobile-content'
+                  " id="mobile_menu_wrapper"
+                  #parent
+                  >
+                  <div class="menu-close" (click)="closeMenu()">
+                    Close
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  </div>
+                  <div id="mobile-megamenu" class="mobile-menu">
+                    <div class="pos-menu-horizontal">
+                      <ul class="menu-content">
+                        <li [routerLink]="['home']" class="menu-item menu-item1" (click)="closeMenu()">
+                          <a>
+                            <span>Home</span>
+                          </a>
+                        </li>
+
+                        <li #categories class="menu-item menu-item3 hasChild" *ngIf="menu">
+                          <a>
+                            <span>Categories</span>
+                          </a>
+
+                          <span class="icon-drop-mobile"><i class="fa fa-plus" *ngIf="!isOpenCategories"
+                              aria-hidden="true" (click)="openCategories()"></i>
+                            <i class="fa fa-minus" *ngIf="isOpenCategories" aria-hidden="true"
+                              (click)="closeCategories()"></i></span>
+                          <div class="pos-sub-menu menu-dropdown">
+                            <div class="pos-sub-inner">
+                              <div class="pos-menu-row">
+                                <div class="pos-menu-col" *ngFor="let category of menu; let i = index">
+                                  <ul class="ul-column" *ngIf="menu">
+                                    <li class="submenu-item hidden-mobile">
+                                      <!-- <img
+                                    [src]="category?.categoryImage"
+                                      alt="category"
+                                    /> -->
+                                    </li>
+                                    <li class="submenu-item">
+                                      <a (click)="
+                                          categoryClick(category?.categoryName);closeMenu();
+                                        ">{{ category?.categoryName }}</a>
+                                      <span class="icon-drop-mobile"><i #plusicon class="fa fa-plus" aria-hidden="true"
+                                          *ngIf="!submenu[i].subKey" (click)="submenuOpen(i)"></i>
+                                        <i #minusicon class="fa fa-minus" aria-hidden="true" *ngIf="submenu[i].subKey"
+                                          (click)="submenuClose(i);"></i>
+                                      </span>
+                                      <ul class="category-sub-menu">
+                                        <li *ngFor="
+                                            let subCategory of category?.allsub_category
+                                          ">
+                                          <a (click)="
+                                              subCategoryClick(
+                                                subCategory.subCategory_name
+                                              );closeMenu();
+                                            ">{{
+                                            subCategory?.subCategory_name
+                                            }}</a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <!-- <li class="home menu-item menu-item1 active">
+                          <a [routerLink]="['ourproducts']">
+                            <span>Our Products</span>
+                          </a>
+                        </li> -->
+                        <li [routerLink]="['aboutus']" class="menu-item menu-item5" (click)="closeMenu()">
+                          <a>
+                            <span>About us</span>
+                          </a>
+                        </li>
+                        <li [routerLink]="['contactus']" class="menu-item menu-item5" (click)="closeMenu()">
+                          <a>
+                            <span>Contact us</span>
+                          </a>
+                        </li>
+                        <li [routerLink]="['orders']" class="menu-item menu-item5" *ngIf="userToken" (click)="closeMenu()">
+                          <a>
+                            <span>My Orders</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-id="gqfhsnr"
+              class="elementor-element elementor-element-gqfhsnr topbar pewidth-inline elementor-widget elementor-widget-posSearch"
+              data-settings='{"search_type":"topbar","search_width":"inline"}' data-element_type="posSearch.default">
+              <div class="elementor-widget-container">
+                <div class="pos-search-wrapper">
+                  <form class="pos-search js-dropdown search-topbar" role="search">
+                    <div class="pos-search__toggle" data-toggle="dropdown">
+                      <i class="fa fa-search" *ngIf="!showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                      <i class="fa fa-times" *ngIf="showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                    </div>
+                    <div class="dropdown-menu" [ngStyle]="{ display: showSearch ? 'block' : 'none' }">
+                      <div class="pos-search__container">
+                        <div class="search-input-container">
+                          <input class="pos-search__input" type="search" #search name="s" [(ngModel)]="searchTerms" #ngModel
+                            autocomplete="off" placeholder="Search..." (keyup.enter)="showSearchTerms()" />
+                          <span class="search-clear unvisible"></span>
+                        </div>
+                        <button class="pos-search__submit" (click)="showSearchTerms()" type="submit">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <div class="dialog-lightbox-close-button dialog-close-button">
+                          <i class="fa fa-search" *ngIf="!showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                          <i class="fa fa-times" *ngIf="showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                      <div class="pos-search__result unvisible"></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-id="tvqhcdy"
+        class="elementor-element elementor-element-tvqhcdy elementor-sm-33 elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column">
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div data-id="rjimkgr"
+              class="elementor-element elementor-element-rjimkgr elementor-widget elementor-widget-posLogo">
+              <div class="elementor-widget-container">
+                <div id="_desktop_logo">
+                  <a [routerLink]="['home']" class="site-logo">
+                    <img [src]="env.shyamoni_logo" alt="Shyamoni Logo" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-id="sgmbnyk"
+        class="elementor-element elementor-element-sgmbnyk elementor-sm-33 elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column">
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div data-id="yvmsqql"
+              class="elementor-element elementor-element-yvmsqql button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}' data-element_type="posAccount.default" *ngIf="!userToken">
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <a [routerLink]="['login']" class="account-login">
+                    <i class="fa fa-user" aria-hidden="true" style="font-size: 17px;"></i>
+                    <span>Sign in</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div data-id="yvmsqql"
+              class="elementor-element elementor-element-yvmsqql button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}' data-element_type="posAccount.default" *ngIf="userToken">
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <a [routerLink]="['profile']" class="account-login pointer">
+                    <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Profile"
+                      style="font-size: 17px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div data-id="yvmsqql"
+              class="elementor-element elementor-element-yvmsqql button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}' data-element_type="posAccount.default" *ngIf="userToken">
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <a class="pointer">
+                    <i data-toggle="tooltip" data-placement="top" title="log-out" class="fa fa-sign-out"
+                      aria-hidden="true" (click)="logoutClick()" style="font-size: 17px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div data-id="yvmsqql"
+              class="elementor-element elementor-element-yvmsqql button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}' data-element_type="posAccount.default" *ngIf="userToken">
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <div id="_desktop_cart_block">
+                  <div
+                    class="blockcart cart-preview cart-default"
+                    data-cartitems="0"
+                  >
+                  <a rel="nofollow" class="pointer">
+                    <i class="fa fa-cart-plus" aria-hidden="true" [routerLink]="['/cart']" style="font-size: 17px;"></i>
+                    <span class="cart-products-count badge-cart">{{
+                      numberOfCartItems
+                    }}</span>
+                  </a>
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

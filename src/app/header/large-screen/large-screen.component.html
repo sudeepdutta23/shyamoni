@@ -1,0 +1,321 @@
+<section
+  data-id="pvsnndx"
+  class="elementor-element elementor-element-pvsnndx elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-hidden-tablet elementor-hidden-phone elementor-section elementor-top-section"
+  data-element_type="section"
+>
+  <div class="elementor-container elementor-column-gap-default">
+    <div class="elementor-row">
+      <div
+        data-id="brncidj"
+        class="elementor-element elementor-element-brncidj elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              data-id="abktzgc"
+              class="elementor-element elementor-element-abktzgc pewidth-inline elementor-widget elementor-widget-pos_social"
+              data-settings='{"block_width":"inline"}'
+              data-element_type="pos_social.default"
+            >
+              <div class="elementor-widget-container">
+                <div style="display: flex;">
+                    <a href="https://www.facebook.com/shyamonicom" target="_blank"><i class="fa fa-facebook icon-h" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/careshyamoni/" target="_blank"><i class="fa fa-instagram icon-h" aria-hidden="true"></i></a>
+                    <a href="https://youtube.com/channel/UCS5q4s7iTcm0-BmHtoqmu_g" target="_blank"><i class="fa fa-youtube-play icon-h" aria-hidden="true"></i></a> 
+                    <a href="https://api.whatsapp.com/send?phone=919387687985" target="_blank"><i class="fa fa-whatsapp icon-h" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-id="k6oaq6o"
+        class="elementor-element elementor-element-k6oaq6o elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap" style="margin-top: 7px;">
+            <div
+              data-id="by19ytp"
+              class="elementor-element elementor-element-by19ytp elementor-widget elementor-widget-text-editor"
+              data-element_type="text-editor.default"
+            >
+              <div class="elementor-widget-container">
+                <div class="elementor-text-editor elementor-clearfix">
+                  <!-- <p>Free Shipping on Guwahati</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-id="uasmcis"
+        class="elementor-element elementor-element-uasmcis elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section
+  data-id="rhuuyiv"
+  class="elementor-element elementor-element-rhuuyiv elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section-content-middle sticky-inner elementor-hidden-tablet elementor-hidden-phone elementor-section elementor-top-section"
+  data-element_type="section"
+>
+  <div class="elementor-container elementor-column-gap-default">
+    <div class="elementor-row">
+      <div
+        data-id="eyacajb"
+        class="elementor-element elementor-element-eyacajb elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              data-id="haoztkx"
+              class="elementor-element elementor-element-haoztkx elementor-widget elementor-widget-posLogo"
+              data-element_type="posLogo.default"
+            >
+              <div class="elementor-widget-container">
+                <div id="_desktop_logo">
+                  <a [routerLink]="['home']" class="site-logo">
+                    <img [src]="env.shyamoni_logo" alt="shyamoni" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-id="ujbuarz"
+        class="elementor-element elementor-element-ujbuarz elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              data-id="rvawpqp"
+              class="elementor-element elementor-element-rvawpqp pewidth-inline elementor-widget elementor-widget-pos_menu"
+              data-settings='{"search_width":"inline"}'
+              data-element_type="pos_menu.default"
+            >
+              <div class="elementor-widget-container">
+                <div id="_desktop_megamenu" class="main-menu">
+                  <div class="pos-menu-horizontal">
+                    <ul class="menu-content">
+                      <li class="home menu-item menu-item2">
+                        <a [routerLink]="['home']" routerLinkActive="active" 
+                        [routerLinkActiveOptions]="{exact:true}">
+                          <span>Home</span>
+                        </a>
+                      </li>
+
+                      <li class="menu-item menu-item3 dropdown-mega hasChild" *ngIf="menu" (mouseover)="enableMenuBlock()">
+                        <a style="">
+                          <span>Categories</span>
+                          <!-- <i class="hidden-md-down icon-rt-arrow-down"></i> -->
+                          <i style="margin: 0 0 0 5px;" class="hidden-md-down fa fa-chevron-down" aria-hidden="true"></i>
+                        </a>
+                        
+                        <div
+                          class="pos-sub-menu menu-dropdown menu_slidedown"
+                          data-width="1200px"
+                          [ngStyle]="{'display': hideMenu ? 'none':'block'}"
+                        >
+                          <div class="pos-sub-inner">
+                            <div class="pos-menu-row row">
+                              <div class="pos-menu-col col-xs-6 col-sm-3" *ngFor="let category of menu">
+                                <ul class="ul-column" *ngIf="menu"> 
+                                  <li class="submenu-item hidden-mobile">
+                                    <img
+                                      [src]="category?.categoryImage"
+                                      (click)="categoryClick(category?.categoryName)"
+                                      alt="category"
+                                      *ngIf="menu.length<=4"
+                                      class="pointer"
+                                    />
+                                  </li>
+                                  <li class="submenu-item">
+                                    <a class="pointer"
+                                        (click)="categoryClick(category?.categoryName)"
+                                      >{{category?.categoryName}}</a
+                                    >
+                                    <ul class="category-sub-menu">
+                                      <li *ngFor="let subCategory of category?.allsub_category">
+                                        <a class="pointer" (click)="subCategoryClick(subCategory.subCategory_name)">{{subCategory.subCategory_name}}</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="home menu-item menu-item2">
+                        <a [routerLink]="['ourproducts']" routerLinkActive="active" 
+                        [routerLinkActiveOptions]="{exact:true}">
+                          <span>Our Products</span>
+                        </a>
+                      </li>
+
+                      <li class="menu-item menu-item5">
+                        <a [routerLink]="['aboutus']" routerLinkActive="active" 
+                        [routerLinkActiveOptions]="{exact:true}">
+                          <span>About us</span>
+                        </a>
+                      </li>
+
+                      <li class="menu-item menu-item5">
+                        <a [routerLink]="['contactus']" routerLinkActive="active" 
+                        [routerLinkActiveOptions]="{exact:true}">
+                          <span>Contact us</span>
+                        </a>
+                      </li>
+                      <li class="menu-item menu-item5" *ngIf="userToken">
+                        <a [routerLink]="['orders']" routerLinkActive="active">
+                          <span>My Orders</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-id="jugpnfd"
+        class="elementor-element elementor-element-jugpnfd elementor-column elementor-col-33 elementor-top-column"
+        data-element_type="column"
+      >
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              data-id="efxnzhh"
+              class="elementor-element elementor-element-efxnzhh dropdown search-dropdown-right pewidth-inline elementor-widget elementor-widget-posSearch"
+              data-settings='{"search_type":"dropdown","search_width":"inline"}'
+              data-element_type="posSearch.default"
+            >
+              <div class="elementor-widget-container">
+                <div class="pos-search-wrapper">
+                  <form
+                    class="pos-search js-dropdown search-dropdown"
+                  >
+                    <div class="pos-search__toggle" data-toggle="dropdown" aria-expanded="true">
+                      <i class="fa fa-search" *ngIf="!showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                      <i class="fa fa-times" *ngIf="showSearch" (click)="toggleSearchShow()" aria-hidden="true"></i>
+                    </div>
+                    <div class="dropdown-menu" [ngStyle]="{'display': showSearch ? 'block' : 'none'}">
+                      <div class="pos-search__container">
+                        <div class="search-input-container">
+                          <input
+                            class="pos-search__input"
+                            type="search"
+                            name="s"
+                            [(ngModel)]="searchTerms"
+                            #ngModel
+                            autocomplete="off"
+                            maxlength="20"
+                            #search
+                            (keyup.enter)="showSearchTerms()"
+                            placeholder="Search..."
+                          />
+                          <span class="search-clear unvisible"></span>
+                        </div>
+                        <button (click)="showSearchTerms()" class="pos-search__submit" type="submit">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="pos-search__result unvisible"></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div
+              data-id="sxjahbo"
+              class="elementor-element elementor-element-sxjahbo button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}'
+              data-element_type="posAccount.default"
+              *ngIf="userToken"
+            >
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <a [routerLink]="['profile']" class="account-login pointer">
+                    <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Profile"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              data-id="sxjahbo"
+              class="elementor-element elementor-element-sxjahbo button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}'
+              data-element_type="posAccount.default"
+              *ngIf="!userToken"
+            >
+              <div class="elementor-widget-container">
+                <div class="pos-account pos-header-element">
+                  <a [routerLink]="['login']" class="account-login">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Sign in</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              data-id="sxjahbo"
+              class="elementor-element elementor-element-sxjahbo button-layout-icon pewidth-inline pos-dropdown-right elementor-widget elementor-widget-posAccount"
+              data-settings='{"search_width":"inline"}'
+              data-element_type="posAccount.default"
+              *ngIf="userToken"
+            >
+            <div class="elementor-widget-container">
+              <div class="pos-account pos-header-element">
+                <a class="pointer">
+                  <i data-toggle="tooltip" data-placement="top" title="log-out" class="fa fa-sign-out" aria-hidden="true" (click)="logoutClick()"></i>
+                </a>
+              </div>
+              </div>
+            </div>
+
+            <div
+              data-id="yfnhknw"
+              class="elementor-element elementor-element-yfnhknw button-layout-icon pewidth-inline elementor-widget elementor-widget-posCart"
+              data-settings='{"search_width":"inline"}'
+              data-element_type="posCart.default"
+              *ngIf="userToken"
+            >
+              <div class="elementor-widget-container" style="margin-right: 7px;">
+                <div id="_desktop_cart_block">
+                  <div
+                    class="blockcart cart-preview cart-default"
+                    data-cartitems="0"
+                  >
+                    <a rel="nofollow" [routerLink]="['/cart']">
+                      <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                      <span class="cart-products-count">{{numberOfCartItems}}</span>
+                    </a>
+                    <app-mini-cart *ngIf="showMiniCart"></app-mini-cart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

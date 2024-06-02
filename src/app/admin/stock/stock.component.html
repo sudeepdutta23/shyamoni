@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <mat-card class="stock-header">
+      <div class="font-weight-bold h4 cursive ml-2 p-2">
+        Add And Update Stock
+      </div>
+        <form [formGroup]="stockForm">
+            <!-- <mat-grid-list cols="1" rowHeight="8:2">
+            <mat-grid-tile class="script-menu"> -->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Select Product</mat-label>
+                <mat-select formControlName="product" name="selectedProduct" (selectionChange)="getWeightByProduct($event)">
+                  <mat-option *ngFor="let product of products" [value]="product.id">
+                   {{product.productName}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field> 
+            <br />
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Select Weight</mat-label>
+              <mat-select formControlName="product_weight" name="selectWeight">
+                <mat-option *ngFor="let weight of weightsOfProduct" [value]="weight.id">
+                 {{weight.weight}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+        <!-- </mat-grid-tile> -->
+        <!-- <mat-grid-tile class="script-menu"> -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select Stock-In/Stock-Out</mat-label>
+            <mat-select formControlName="stock_in_out" name="stock_in_out" (selectionChange)="changeStockInOut($event)">
+              <mat-option *ngFor="let opt of stockOption"  [value]="opt">
+               {{opt}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field> 
+            <mat-form-field class="example-full-width" appearance="fill" *ngIf="this.stockForm.get('stock_in_out')?.value == 'Stock-in'">
+                <mat-label>Stock-In-count</mat-label>
+                <input matInput type="number" placeholder="Enter Stock" formControlName="stock_in">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill" *ngIf="this.stockForm.get('stock_in_out')?.value == 'Stock-out'">
+              <mat-label>Stock-out-count</mat-label>
+              <input matInput type="number" placeholder="Enter Stock" formControlName="stock_out">
+          </mat-form-field>
+        <!-- </mat-grid-tile>
+    </mat-grid-list> -->
+    <div class="container-fluid ml-3">
+        <button mat-raised-button class="mr-2" color="primary" [disabled]="stockForm.invalid" (click)="addStock()">Submit</button>
+        <button mat-raised-button color="primary" (click)="resetForm()">Reset Form</button>
+    </div>
+        </form>
+        <mat-form-field appearance="standard" class="example-full-width">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 example-full-width" *ngIf="dataSource">
+              
+            <!-- Product id Column -->
+            <ng-container matColumnDef="productName">
+              <th mat-header-cell *matHeaderCellDef> Product Name. </th>
+              <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Weight. </th>
+              <td mat-cell *matCellDef="let element"> {{element.weight}} gm</td>
+            </ng-container>
+          
+            <!-- totalStockIn Column -->
+            <ng-container matColumnDef="totalStockIn">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Total Stock In</th>
+              <td mat-cell *matCellDef="let element" class="text-center"> 
+                <div *ngIf="!element.isEditEnabled">{{element.totalStockIn}}</div>
+                <mat-form-field class="example-full-width" appearance="outline" *ngIf="element.isEditEnabled">
+                  <mat-label>Stock-In-count</mat-label>
+                  <input matInput [formControl]="updateStockIn" placeholder="Enter Stock" value={{element.totalStockIn}}>
+              </mat-form-field>
+              </td>
+            </ng-container>
+          
+            <!-- totalStockOut Column -->
+            <ng-container matColumnDef="totalStockOut">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Total Stock Out </th>
+              <td mat-cell *matCellDef="let element" class="text-center"> 
+                <div *ngIf="!element.isEditEnabled">{{element.totalStockOut == null? "Empty" : element.totalStockOut}}</div>
+                <mat-form-field class="example-full-width" appearance="outline" *ngIf="element.isEditEnabled">
+                  <mat-label>Stock-Out-count</mat-label>
+                  <input matInput [formControl]="updateStockOut" placeholder="Enter Stock" value={{element.totalStockOut}}>
+              </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Delete/Edit Stock </th>
+              <td mat-cell *matCellDef="let element" class="text-center"> 
+                <mat-icon 
+                  class="pointer mr-1" 
+                  color="primary" 
+                  *ngIf="!element.isEditEnabled" 
+                  (click)="element.isEditEnabled = !element.isEditEnabled">edit
+                </mat-icon> 
+                <mat-icon 
+                  *ngIf="!element.isEditEnabled" 
+                  class="pointer ml-1" color="primary" 
+                  (click)="deleteProductStock(element.id)">delete
+                </mat-icon> 
+                <mat-icon 
+                  color="primary"
+                  class="pointer"
+                  (click)="editStockById(element.id)"
+                  *ngIf="element.isEditEnabled">done
+                </mat-icon> 
+                <mat-icon 
+                  color="primary" 
+                  class="pointer"
+                  *ngIf="element.isEditEnabled" 
+                  (click)="element.isEditEnabled = !element.isEditEnabled">clear
+                </mat-icon>
+              </td>
+            </ng-container> -->
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+    </mat-card>
+</div>
+

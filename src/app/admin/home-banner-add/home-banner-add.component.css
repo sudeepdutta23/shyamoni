@@ -1,0 +1,17 @@
+.addbanner-header{
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 79vw;
+}
+.example-full-width {
+    width: 95%;
+  }
+  .cursive{
+      font-family: cursive;
+  }
+  .mat-form-field-infix{
+    width: 400px !important;
+  }
+  ::ng-deep .mat-form-field-label{
+    text-align: left !important;
+  }

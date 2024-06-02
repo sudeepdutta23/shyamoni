@@ -1,0 +1,16 @@
+.icon-h{
+padding-left: 5px;
+padding-right: 5px;
+cursor: pointer;
+}
+.icon-h:hover{
+    color: #ed2353;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.active{
+    color: #ed2353 !important;
+}

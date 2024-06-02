@@ -1,0 +1,98 @@
+  <article
+    class="thumbnail-container product-miniature js-product-miniature style_product2 cursor"
+    data-id-product="1"
+    data-id-product-attribute="0"
+    (click)="navigateToProduct(product.id)"
+  >
+    <div class="img_block">
+      <a
+        class="thumbnail product-thumbnail"
+      >
+        <img
+          class="first-image lazyload"
+          [src]="product?.product_image[0]?.ImagePath"
+          [alt]="product?.productName"
+          data-full-size-image-url="../101-large_default/fruit-dried-mango-slices.jpg"
+          (error)="setDefault($event)"
+        />
+        <img
+          class="img-responsive second-image animation1 lazyload"
+          [src]="product?.product_image[1]?.ImagePath"
+          alt=""
+          itemprop="image"
+          (error)="setDefault($event)"
+        />
+      </a>
+
+      <!-- <div class="quick-view">
+        <a
+          class="quick_view"
+          data-link-action="quickview"
+          title="Quick view"
+        >
+          <span>Quick view</span>
+        </a>
+      </div> -->
+
+      <!-- <ul class="product-flag">
+        <li class="discount"><span>-10%</span></li>
+        <li class="new"><span>New product</span></li>
+      </ul> -->
+    </div>
+    <div class="product_desc">
+      <div class="inner_desc">
+        <div class="manufacturer">
+          <a>{{product.brand}}</a >
+        </div>
+
+        <h3>
+          <a
+            class="product_name one_line"
+            title="Freesia frenzy"
+            >{{product.productName}}</a
+          >
+        </h3>
+
+        <div class="hook-reviews">
+          <div
+            class="comments_note"
+            itemprop="aggregateRating"
+            itemscope
+            itemtype="https://schema.org/AggregateRating"
+          >
+            <div class="clearfix">
+                <i *ngFor="let rating of [].constructor(product?.stars)" style="color: #f0f029;" class="fa fa-star" aria-hidden="true"></i>
+            </div>
+            <span class="nb-comments"
+              ><span itemprop="reviewCount">3</span> Review(s)</span
+            >
+          </div>
+        </div>
+
+        <div class="product-price-and-shipping">
+          <span class="regular-price" aria-label="Regular price">र. {{product?.product_weight[0]?.originalPrice}}</span>
+
+          <span class="price price-sale" aria-label="Price">र. {{product?.product_weight[0]?.specialPrice}}</span>
+
+          <span class="discount-percentage discount-product">{{ (100 - (product?.product_weight[0]?.specialPrice / product.product_weight[0]?.originalPrice) * 100) | number : '2.0-2' }}%</span>
+        </div>
+      </div>
+
+      <div class="availability">
+        <div class="availability-list in-stock">
+          Availability: <span>2698 In Stock</span>
+        </div>
+      </div>
+
+      <div class="product-desc">
+        <p>
+          Healthy snacks can be an important part of your diet. They provide
+          energy in the middle of the day or when you exercise. A healthy snack
+          between meals can also decrease your hunger and keep you from
+          overeating at meal time.
+        </p>
+      </div>
+
+      <div class="variant-links"></div>
+    </div>
+  </article>

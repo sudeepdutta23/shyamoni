@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <mat-card class="category-header">
+        <h1>Add Category</h1>
+        <form [formGroup]="addCategoryForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Add Category</mat-label>
+            <input matInput placeholder="Enter Category" formControlName="categoryName" name="categoryName">
+            <!-- <mat-icon matSuffix>add_circle_outline</mat-icon> -->
+        </mat-form-field>
+          <div style="margin: 0 auto 15px;" class="custom-dropzone" ngx-dropzone [accept]="'image/*'" [multiple]="false" (change)="Select($event)">
+            <ngx-dropzone-label>
+                <div>
+                    <h2>Image Upload</h2>
+                </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="Remove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+        </div>
+        <button mat-raised-button color="primary" (click)="addCategory()" [disabled]="addCategoryForm.invalid">
+          <div *ngIf="isLoading" class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span *ngIf="!isLoading"> 
+            Submit
+          </span>
+        </button>
+        </form>
+    </mat-card>
+
+            <mat-form-field appearance="standard" class="example-full-width">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
+              
+              <table style="margin-bottom: 10px;" mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
+              
+                <!-- id Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> Category ID. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+              
+                <!-- categoryName Column -->
+                <ng-container matColumnDef="categoryName">
+                  <th mat-header-cell *matHeaderCellDef> Category Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
+                </ng-container>
+              
+                <!-- status Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element"> {{element.status == "1" ? "Active" : "Inactive"}} </td>
+                </ng-container>
+
+                 <!-- Created Time Column -->
+                 <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef> Created Time </th>
+                    <td mat-cell *matCellDef="let element"> {{element.created_at | date : 'medium'}} </td>
+                  </ng-container>
+
+                  <!-- Created Time Column -->
+                 <ng-container matColumnDef="updated_at">
+                    <th mat-header-cell *matHeaderCellDef> Updated Time </th>
+                    <td mat-cell *matCellDef="let element"> {{element.updated_at | date : 'medium'}} </td>
+                  </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
+</div>

@@ -1,0 +1,14 @@
+.example-card {
+    width: 95%;
+    cursor: pointer;
+  }
+
+  .fa-sze{
+    font-size: 25px;
+    color: rgb(32 196 255);
+  }
+  .hr{
+    border-top: 1px solid black;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }

@@ -1,0 +1,12 @@
+.w-33 { 
+ width: 33.33%;
+}
+
+.about-us-bottom-content-mobile{
+    display: flex;
+    flex-direction: column;
+}
+
+.about-us-bottom-item-mobile{
+    width: 100%;
+}

@@ -1,0 +1,147 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+    <div class="container">
+      <header class="page-header">
+        <h1>Log in to your account</h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="['/home']"><span>Home</span></a>
+          </li>
+
+          <li>
+            <span>Log in to your account</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container" style="width: 75%;">
+    <div class="row row-wrapper">
+      <div id="content-wrapper" class="js-content-wrapper col-xs-12">
+        <section id="main">
+          <div id="content" class="page-content card card-block">
+            <section class="login-form">
+              <form
+              [formGroup]="signInForm"
+              >
+                <div>
+                  <input type="hidden" name="back" value="" />
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-email"
+                    >
+                      Email
+                    </label>
+                    <div class="col-md-8">
+                      <input
+                        id="field-email"
+                        class="form-control"
+                        name="email"
+                        formControlName="username"
+                        type="email"
+                        value=""
+                        autocomplete="email"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-2 form-control-comment text-danger">
+                      {{ formErrors.username }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label
+                      class="col-md-2 form-control-label required"
+                      for="field-password"
+                    >
+                      Password
+                    </label>
+                    <div class="col-md-8">
+                      <div class="input-group js-parent-focus">
+                        <input
+                          id="field-password"
+                          class="form-control js-child-focus js-visible-password"
+                          name="password"
+                          formControlName="password"
+                          title="At least 5 characters long"
+                          aria-label="Password input of at least 5 characters"
+                          [type]="passtype"
+                          autocomplete="current-password"
+                          value=""
+                          pattern=".{5,}"
+                          required
+                        />
+                        <span class="input-group-btn">
+                          <button
+                          class="btn"
+                          data-action="show-password"
+                          data-text-show="Show"
+                          data-text-hide="Hide"
+                          (click)="changePassIcon()"
+                          >
+                          {{passtype == "text" ? "Hide" : "Show"}}
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-2 form-control-comment text-danger">
+                    {{ formErrors.password }}
+                  </div>
+                  </div>
+
+                  <div class="forgot-password text-center">
+                    <a
+                      [routerLink]="['/forgetPassword']"
+                      rel="nofollow"
+                    >
+                      Forgot your password?
+                    </a>
+                  </div>
+                </div>
+
+                <footer class="form-footer text-sm-center clearfix">
+                  <input type="hidden" name="submitLogin" value="1" />
+
+                  <button
+                    id="submit-login"
+                    class="btn btn-primary"
+                    data-link-action="sign-in"
+                    type="submit"
+                    class="btn btn-primary form-control-submit"
+                    (click)="signin()"
+                    [disabled]="signInForm.invalid"
+                  >
+                    Sign in
+                  </button>
+                </footer>
+              </form>
+            </section>
+            <hr />
+
+            <div class="no-account text-center">
+              <a
+                [routerLink]="['/register']"
+              >
+                No account? Create one here
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

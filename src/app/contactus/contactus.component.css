@@ -1,0 +1,11 @@
+.contact-us-mobile{
+    width: 75%; 
+    margin: 0 auto
+}
+
+@media (max-width: 900px){
+    .contact-us-mobile{
+        width: 100%;
+        margin: 0 auto
+    }
+}

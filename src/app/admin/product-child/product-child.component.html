@@ -1,0 +1,280 @@
+<form [formGroup]="updateProductForm" class="p-4">
+    <i class="fa fa-arrow-circle-o-left fs" aria-hidden="true" (click)="backClicked()"></i>
+  <div class="row p-2">
+    <div class="col-md-4">
+       <mat-form-field class="example-full-width d-none" appearance="outline">
+        <!-- <input
+          matInput
+          formControlName="UCategory"
+          [value]="productDetails.cate_id"
+        /> -->
+        <mat-label>Select Categories</mat-label>
+        <mat-select
+          formControlName="UCategory"
+          name="selectedCategory"
+          (selectionChange)="categoryChange($event)"
+          >
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category.id"
+          >
+          {{category.categoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width d-none" appearance="outline">
+        <!-- <input
+          matInput
+          formControlName="UsubCategory"
+          [value]="productDetails.subCate_id"
+        /> -->
+        <mat-label>Select Subcategory</mat-label>
+        <mat-select
+          formControlName="UsubCategory"
+          name="selectedCategory"
+          >
+          <mat-option
+            *ngFor="let subCategory of mappedSubCategories"
+            [value]="subCategory.id"
+          >
+          {{subCategory.subCategory_name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4" style="display: none">
+      <mat-form-field class="example-full-width d-none" appearance="outline">
+        <input
+          matInput
+          formControlName="UProductId"
+          [value]="productDetails.id"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Product Name</mat-label>
+        <input
+          matInput
+          formControlName="UproductName"
+          [value]="productDetails.productName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Brand</mat-label>
+        <input
+          matInput
+          formControlName="Ubrand"
+          [value]="productDetails.brand"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Short Description</mat-label>
+        <input
+          matInput
+          formControlName="UshortDesc"
+          [value]="productDetails.shortDesc"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Keywords</mat-label>
+        <input
+          matInput
+          formControlName="Ukeywords"
+          [value]="productDetails.keywords"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="example-chip-list" appearance="fill" style="width: 50vw;">
+        <mat-label>Product Tags</mat-label>
+        <mat-chip-list #chipList2 aria-label="Fruit selection">
+          <mat-chip
+            *ngFor="let tag of updateTags"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removetagUpdate(tag)"
+          >
+            {{ tag.tag_name }}
+            <mat-icon matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New Tag..."
+            [matChipInputFor]="chipList2"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="updateAdd($event, this.productDetails.id)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="mb-2 col-md-12">
+      <mat-label style="font-size: 11px;">Add Long Description</mat-label>
+      <app-text-editor
+        (editorData)="setUpdateLongDesc($event)"
+        [initialData]="updateProductForm.get('UlongDesc')?.value"
+      ></app-text-editor>
+    </div>
+    <br />
+    <div class="mb-2 col-md-12" style="font-weight: lighter; font-size: large">
+      Update/Add New Product Weight Details
+      <div class="container mb-2">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addProductWeight('update')"
+          [disabled]="update_product_weight()?.value?.length > 3"
+        >
+          Add More Weights
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12" formArrayName="Uproduct_weight">
+      <div
+        class="updateWeight row mb-2"
+        *ngFor="let weigh of update_product_weight().controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Select Weight</mat-label>
+            <mat-select
+              *ngIf="!update_product_weight()?.value[i]?.id"
+              formControlName="weight"
+              name="selectedCategory"
+            >
+              <mat-option
+                *ngFor="let weigh of productWeights"
+                [value]="weigh.weight"
+              >
+                {{ weigh.weight }}
+              </mat-option>
+            </mat-select>
+            <input
+              *ngIf="update_product_weight()?.value[i]?.id"
+              matInput
+              formControlName="weight"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4" *ngIf="!update_product_weight()?.value[i]?.id">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input matInput formControlName="quantity" [disabled]="true" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Original Price</mat-label>
+            <input matInput formControlName="originalPrice" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Selling Price</mat-label>
+            <input matInput formControlName="specialPrice" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Discount Amount</mat-label>
+            <input matInput formControlName="discountAmount" />
+          </mat-form-field>
+        </div>
+        <button
+          mat-fab
+          color="warn"
+          aria-label="Example icon button with a delete icon"
+          matTooltip="Delete Product Weight"
+          matTooltipPosition="right"
+          (click)="deleteWeight(productDetails.product_weight[i]?.id, i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="container mb-2">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="updateProductWeight(productDetails.id)"
+        >
+          Update Weights
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12 text-center" style="display: flex">
+      <div class="images_parent" *ngFor="let image of updatableImages">
+        <img
+          class="p-2 img-responsive"
+          [src]="image?.ImagePath"
+        />
+        <mat-icon
+          class="cursor text-danger icon-wrap deleteIcon pointer"
+          matTooltip="Delete Product Image"
+          matTooltipPosition="above"
+          (click)="deleteProductImage(image?.id)"
+          >delete</mat-icon
+        >
+      </div>
+    </div>
+    <div
+      class="col-md-12 py-1"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <div
+        style="width: 75%; margin-left: 0"
+        class="custom-dropzone"
+        *ngIf="updatableImages?.length < 5"
+        ngx-dropzone
+        [accept]="'image/*'"
+        [multiple]="false"
+        (change)="UonSelect($event)"
+      >
+        <ngx-dropzone-label>
+          <div>
+            <h2>Image Upload</h2>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-image-preview
+          ngProjectAs="ngx-dropzone-preview"
+          *ngFor="let f of Ufiles"
+          [file]="f"
+          [removable]="true"
+          (removed)="UonRemove(f)"
+        >
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </div>
+    </div>
+    <div class="col-md-12 text-right mt-2">
+      <button
+        mat-raised-button
+        class="mr-2"
+        color="primary"
+        (click)="updateProduct()"
+      >
+        Update
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="removeUpdateWeightControls(true)"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

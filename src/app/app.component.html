@@ -1,0 +1,10 @@
+<main *ngIf="showNav">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</main>
+<!-- <main *ngIf="showNav"> -->
+  <div  *ngIf="!showNav">
+    <router-outlet></router-outlet>
+  </div>
+<!-- </main> -->

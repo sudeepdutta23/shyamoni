@@ -1,0 +1,150 @@
+<div class="slick-slide1 pointer" style="padding-left: 8px; padding-right: 8px;" (click)="navigateToProduct(product.id)">
+  <div class="slick-slide-inner1">
+    <article
+      class="thumbnail-container product-miniature js-product-miniature style_product4"
+      data-id-product="1"
+      data-id-product-attribute="0"
+    >
+      <div class="img_block">
+        <a class="thumbnail product-thumbnail">
+          <img
+            class="first-image lazyload"
+            [src]="productImage[0]?.ImagePath"
+            alt="Freesia frenzy"
+            (error)="setDefault($event)"
+          />
+          <img
+            class="img-responsive second-image animation1 lazyload"
+            [src]="productImage[1]?.ImagePath"
+            alt=""
+            itemprop="image"
+            (error)="setDefault($event)"
+          />
+        </a>
+
+        <!-- <ul class="add-to-links">
+          <li>
+            <a
+              class="addToWishlist"
+              href="#"
+              data-rel="1"
+              onclick="WishlistCart('wishlist_block_list', 'add', '1', '0', 1, '', 'Freesia frenzy', '../101-home_default/fruit-dried-mango-slices.jpg'); return false;"
+              title="wishlist"
+            >
+              <span>wishlist</span>
+            </a>
+          </li>
+          <li class="compare">
+            <a
+              href="#"
+              class="poscompare-add compare-button js-poscompare-add"
+              data-id_product="1"
+              onclick="posCompare.addCompare($(this),1,'Freesia frenzy','../101-home_default/fruit-dried-mango-slices.jpg'); return false;"
+              title="Add to compare"
+              ><span>compare</span></a
+            >
+          </li>
+          <li class="quick-view">
+            <a
+              class="quick_view"
+              href="#"
+              data-link-action="quickview"
+              title="Quick view"
+            >
+              <span>Quick view</span>
+            </a>
+          </li>
+        </ul> -->
+
+        <!-- <ul class="product-flag">
+          <li class="discount">
+            <span>-10%</span>
+          </li> -->
+          <!-- <li class="new">
+            <span>New product</span>
+          </li> -->
+        <!-- </ul> -->
+      </div>
+      <div class="product_desc">
+        <div class="manufacturer">
+          <a>{{product?.brand}}</a>
+        </div>
+
+        <h3>
+          <a class="product_name one_line" title="Freesia frenzy"
+            >{{product?.productName}}</a
+          >
+        </h3>
+
+        <div class="hook-reviews">
+          <div
+            class="comments_note"
+            itemprop="aggregateRating"
+            itemscope
+            itemtype="https://schema.org/AggregateRating"
+          >
+            <!-- <div class="star_content clearfix">
+            </div> -->
+            <i *ngFor="let rating of [].constructor(product?.stars || 1)" style="color: #f0f029;" class="fa fa-star" aria-hidden="true"></i>
+            <span class="nb-comments"
+              ><span itemprop="reviewCount">3</span> Review(s)</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <span class="regular-price" aria-label="Regular price"><del>र.{{productWeight[0]?.originalPrice}}</del></span> &nbsp;
+
+          <span class="price price-sale" aria-label="Price" style="color: #cf292b; font-weight: bold;">र.{{productWeight[0]?.specialPrice}} </span> &nbsp;
+
+          <span class="discount-percentage discount-product" style="color: white; background-color: #cf292b; font-weight: bold; padding: 0 4px 0 4px; border-radius: 2px;">{{ (100 - (productWeight[0]?.specialPrice / productWeight[0]?.originalPrice) * 100) | number : '2.0-2' }}%</span>
+        </div>
+        
+ 
+        <div class="cart">
+          <div class="product-add-to-cart">
+            <form class="add-to-cart-or-refresh">
+              <input
+                type="hidden"
+                name="token"
+                value="44de839971e67a062fc114b478c66f62"
+              />
+              <input
+                type="hidden"
+                name="id_product"
+                value="1"
+                class="product_page_product_id"
+              />
+              <input type="hidden" name="qty" value="1" min="1" />
+              <!-- <button
+                class="button ajax_add_to_cart_button add-to-cart btn-default"
+                data-button-action="add-to-cart"
+                type="submit"
+                title="Add to cart"
+                (click)="addToCart(product)"
+              >
+                Add to cart
+              </button> -->
+            </form>
+          </div>
+        </div>
+        <div class="availability">
+          <div class="availability-list in-stock">
+            Availability: <span>2698 In Stock</span>
+          </div>
+        </div>
+
+        <div class="product-desc">
+          <p>
+            Healthy snacks can be an important part of your diet. They provide
+            energy in the middle of the day or when you exercise. A healthy
+            snack between meals can also decrease your hunger and keep you from
+            overeating at meal time.
+          </p>
+        </div>
+
+        <div class="variant-links"></div>
+      </div>
+    </article>
+  </div>
+</div>

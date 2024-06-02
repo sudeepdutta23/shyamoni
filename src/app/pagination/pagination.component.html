@@ -1,0 +1,51 @@
+  
+<nav aria-label="Pagination">
+    <ul class="pagination">
+      <li>
+        <button
+          aria-label="Go To Previous Page"
+          class="btn btn-primary pagination-btn"
+          [attr.aria-disabled]="links?.[0]?.url == null"
+          [disabled]="links?.[0]?.url == null"
+          (click)="onPrevious(links[0]?.url)"
+        >
+          <<
+        </button>
+      </li>
+      <!-- <li *ngFor="let page of pages; index as i">
+        <a
+          *ngIf="page !== -1; else more"
+          class="internal"
+          [attr.aria-current]="page === current ? 'page' : null"
+          [attr.aria-label]="
+            page === current ? 'Current Page, Page ' + page : 'Go to Page ' + page
+          "
+          [class.current]="page === current"
+          tabindex="0"
+          (click)="onGoTo(page)"
+          (keyup.enter)="onGoTo(page)"
+          >{{ page }}</a
+        >
+        <ng-template #more>
+          <a class="more"> ... </a>
+        </ng-template>
+      </li> -->
+      <li *ngFor="let link of links | slice:1:links.length-1; index as i">
+        <a class="internal" tabindex="0" (click)="onGoTo(links[i + 1]?.url)" [attr.aria-current]="links[i + 1]?.active ? 'page' : null"
+        [class.current]="links[i + 1]?.active">
+          {{i+1}}
+        </a>
+      </li>
+      <li>
+        <button
+          aria-label="Go To Next Page"
+          class="btn btn-primary pagination-btn"
+          [attr.aria-disabled]="links?.[links?.length - 1]?.url == null"
+          [disabled]="links?.[links?.length - 1]?.url == null"
+          (click)="onNext(links?.[links?.length - 1]?.url)"
+        >
+          >>
+        </button>
+      </li>
+    </ul>
+  </nav>

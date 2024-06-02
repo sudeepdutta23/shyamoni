@@ -1,0 +1,174 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'" *ngIf="!(homeview)">
+    <div class="container">
+      <header class="page-header">
+        <h1>Our Products</h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+
+
+            <li>
+                <a [routerLink]="['/home']"><span>Home</span></a>
+            </li>
+
+
+            <li>
+                <span>Our Products</span>
+            </li>
+
+
+        </ol>
+    </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container">
+    <div class="row row-wrapper" [ngStyle]="{'display': homeview ? 'flex':'', 'justify-content': homeview ? 'center': ''}">
+      <div class="col-xs-12 col-sm-4 col-md-3" *ngIf="!homeview">
+        <div [ngClass]="showFilterForSmallScreen ? '_mPS2id-t mPS2id-target mPS2id-target-first mPS2id-target-last' : '_mPS2id-t mPS2id-target mPS2id-target-first mPS2id-target-last hidden-sm-down'">
+          <div id="search_filters">
+            <p class="text-uppercase h6 hidden-sm-down">Filter By</p>
+            <section class="facet clearfix">
+              <p class="h6 facet-title hidden-sm-down">Price</p>
+              <ngx-slider
+                [(value)]="minValue"
+                [(highValue)]="maxValue"
+                (userChangeEnd)="changeValue($event)"
+                [options]="options"
+              ></ngx-slider>
+            </section>
+            <section class="facet clearfix">
+              <p class="h6 facet-title hidden-sm-down">Brand</p>
+
+              <div
+                class="title hidden-md-up"
+                data-target="#facet_45766"
+                data-toggle="collapse"
+              >
+                <p class="h6 facet-title">Brand</p>
+              </div>
+
+              <ul id="facet_45766" class="collapse">
+                <li *ngFor="let brand of brands">
+                  <label class="facet-label" [for]="brand">
+                    <span class="custom-checkbox">
+                      <input
+                        [id]="brand"
+                        (change)="checkBrand(brand)"
+                        data-search-url="2-homea515.html?gt=3&amp;q=Brand-manufacturer+1"
+                        type="checkbox"
+                      />
+                      <span class="ps-shown-by-js"
+                        ><i class="material-icons rtl-no-flip checkbox-checked"
+                          >&#xE5CA;</i
+                        ></span
+                      >
+                    </span>
+
+                    <a
+                      class="_gray-darker search-link js-search-link"
+                      rel="nofollow"
+                    >
+                      {{ brand }}
+                    </a>
+                  </label>
+                </li>
+              </ul>
+              <div id="search_filter_controls" style="text-align: center;" class="hidden-md-up">
+                <span id="_mobile_search_filters_clear_all"></span>
+                <button class="btn btn-secondary ok" (click)="showFilterForSmallScreen = false">
+                  <i class="material-icons rtl-no-flip">&#xE876;</i>
+                  OK
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div [ngClass]="showFilterForSmallScreen? 'js-content-wrapper left-column col-xs-12 col-sm-8 col-md-9 hidden-sm-down':'js-content-wrapper left-column col-xs-12 col-sm-8 col-md-9'">
+        <section id="main">
+          <div id="js-product-list-header"></div>
+
+          <section id="products-list">
+            <div>
+              <div id="js-product-list-top" class="products-selection">
+                <div class="row flex-layout center-vertical">
+                  <div class="col-xs-12 col-sm-4 col-md-6 total-products">
+                  </div>
+                  <div class="col-xs-12 col-sm-8 col-md-6">
+                    <div class="row sort-by-row flex-end">
+                      <div class="col-sm-6 col-xs-4 hidden-md-up filter-button" *ngIf="!(homeview)">
+                        <button
+                          id="search_filter_toggler"
+                          class="btn btn-secondary filter-mobile"
+                          (click)="showFilterForSmallScreen = true"
+                        >
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                          Filter
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div id="" class="hidden-sm-down">
+              <section id="js-active-search-filters" class="hide">
+                <p class="h6 hidden-xs-up">Active filters</p>
+              </section>
+            </div>
+            
+            <div *ngIf="products">
+              <div
+                id="js-product-list"
+                data-cate="2"
+                data-type="3"
+                data-list=""
+                style="margin-bottom: 20px"
+              >
+                <div class="row product_content grid row">
+                  <div
+                    class="item-product product_per_4 col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+                    *ngFor="let product of products?.data"
+                  >
+                    <app-product-card2 [product]="product"></app-product-card2>
+                  </div>
+                </div>
+
+                <nav class="pagination" *ngIf="products?.data?.length && products?.data?.length>0">
+                  <div>
+                    <app-pagination
+                      *ngIf="products?.links"
+                      [links]="products?.links"
+                      (goTo)="paginateCommon($event)"
+                      (next)="paginateCommon($event)"
+                      (previous)="paginateCommon($event)"
+                    ></app-pagination>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div style="display: flex;" *ngIf="products?.data?.length && products?.data?.length<1">
+              <img [src]="env.noProductsFound" alt="" srcset="">
+            </div>
+
+            <div>
+              <div id="js-product-list-bottom"></div>
+            </div>
+          </section>
+        </section>
+      </div> 
+    </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

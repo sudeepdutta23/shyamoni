@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <mat-card class="addabout-header" style="margin-bottom: 20px;">
+        <mat-card-header class="font-weight-bold h4 cursive">
+            Add About Us
+        </mat-card-header>
+        <mat-card-content class="text-center">
+            <form [formGroup]="aboutForm">
+                  <app-text-editor (editorData)="setAbout($event)" [initialData]="aboutDetails.about"></app-text-editor>
+            </form>
+            <div class="text-right mr-4 font-weight-bold cursive text-primary" *ngIf="aboutDetails?.updated_at != '' || aboutDetails?.updated_at != null">
+                <span>Last Updated On:</span><span class="ml-3">{{aboutDetails?.updated_at | date: 'medium'}}</span>
+            </div>
+        </mat-card-content>
+        <mat-card-footer class="p-4 ml-2 my-1">
+            <button mat-raised-button color="primary" [disabled]="aboutForm.invalid" (click)="editAbout()">Update</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

@@ -1,0 +1,54 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer style="width: 18vw; background-color: #2a5c6d;" mode="side" opened>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+            <p style="margin-top:2rem; margin-left: 1em; font-size: x-large; font-weight: 500; color: darkorange;">
+            Admin Panel
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/home']">
+                Dashboard
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/addcategory']">
+                Add Categories
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/addsubcategory']">
+                Add Subcategories
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/addWeight']">
+                Add Weight
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/product']">
+                Add Products
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/addAboutUs']">
+                Add About Us
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/homebanneradd']">
+                Add Banner Image
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/stock']">
+                Stocks
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/order']">
+                Orders
+            </p>
+            <p class="sidebar-item" [routerLink]="['/admin/dashboard/users']">
+                Users
+            </p>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <mat-toolbar style="box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);justify-content: space-between;">
+            <button type="button" mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+            <div>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon> Super Admin
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" aria-label="Example home icon">power_settings_new</mat-icon>
+            </button>
+                <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">Logout</button>
+                <!-- <button mat-menu-item>Forget Password</button> -->
+            </mat-menu>
+        </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

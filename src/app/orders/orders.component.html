@@ -1,0 +1,155 @@
+<section id="wrapper">
+  <div class="page-title-wrapper" [style.background-image]="'url('+env.breadcrumbImage+')'">
+    <div class="container">
+      <header class="page-header">
+        <h1>
+          <header class="page-header">
+            <h1>My Orders</h1>
+          </header>
+        </h1>
+      </header>
+
+      <nav data-depth="2" class="breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="['/home']"><span>Home</span></a>
+          </li>
+
+          <li>
+            <span>My Orders</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <aside id="notifications">
+    <div class="container"></div>
+  </aside>
+
+  <div class="container desktop-padding" style="margin-bottom: 100px;" *ngIf="orderDetails">
+    <div class="card product-padding" style="margin-bottom: 3rem; border: 1px solid #c1b9b9;"
+      *ngFor="let data of orderDetails; let i = index">
+      <div class="main-card-title">
+        <div  style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 30px;">
+          <div class="header-font font-main-header">
+          Order Details
+          </div>
+          <div>
+            <div class="header-font font-main-header">
+              Total : र. {{data?.getOrderDetailsByID?.totalPrice}}
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+          <div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;">
+             <span class="main-card-item-bold">Invoice Number :</span><span>{{data?.getOrderDetailsByID?.InvoiceID}}</span>
+            </div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;">
+             <span class="main-card-item-bold">Order Date : </span><span>{{data.getOrderDetailsByID.orderDate |date: 'mediumDate'}}</span> <span style="margin-left: 10px;" class="main-card-item-bold" *ngIf="innerWidth<900">Discount : </span> <span> र. {{data?.getOrderDetailsByID?.totalDiscount}}</span>
+            </div>
+            <div class="main-card-item">
+              <span *ngIf="innerWidth> 900" class="main-card-item-bold pointer" style="padding: 15px 15px 15px 0;" (click)="navigateInvoicePage(data.getOrderDetailsByID.order_id)"><a>View Invoice</a></span>
+              <span *ngIf="data?.getOrderDetailsByID?.awb_id && innerWidth> 900" class="main-card-item-bold" style="padding: 15px 15px 15px 0;"><a [href]="data.getOrderDetailsByID.awbUrl" target="_blank">View Shipping Status</a></span>
+            </div>
+          </div>
+          <div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;" *ngIf="innerWidth>900">
+             <span class="main-card-item-bold">Discount :</span> <span>र. {{data?.getOrderDetailsByID?.totalDiscount}}</span>
+            </div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;">
+             <span class="main-card-item-bold">GST ({{gstPercent}}%) :</span><span>र. {{data?.getOrderDetailsByID?.totalGST}}</span> <span class="main-card-item-bold" style="margin-left: 50px;" *ngIf="innerWidth<900">Delivery Charge : </span><span  *ngIf="innerWidth<900">र. {{data?.getOrderDetailsByID?.totalDeliveryCharge}}</span>
+            </div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;" *ngIf="innerWidth>900">
+             <span class="main-card-item-bold">Delivery Charge :</span> <span>र. {{data?.getOrderDetailsByID?.totalDeliveryCharge}}</span>
+            </div>
+            <div class="main-card-item" style="padding: 15px 15px 15px 0;">
+              <span class="main-card-item-bold pointer" *ngIf="innerWidth< 900" style="padding: 15px 15px 15px 0;" (click)="navigateInvoicePage(data.getOrderDetailsByID.order_id)"><a>View Invoice</a></span>
+              <span class="main-card-item-bold" *ngIf="data?.getOrderDetailsByID?.awb_id && innerWidth< 900" style="padding: 15px 15px 15px 0;"><a [href]="data.getOrderDetailsByID.awbUrl" target="_blank">View Shipping Status</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="i == data.getProductDetails.length -1? 'card product-card-parent border-bottom-hide': 'card product-card-parent border-bottom-show'" *ngFor="let product of data.getProductDetails; let i = index">
+        <div style="display: flex;" class="image-parent-mobile">
+          <img class="image-responsive" [src]="product.productImage" alt="">
+
+          <!-- For Desktop Screen View -->
+          <div class="product-details" *ngIf="innerWidth> 900">
+            <div style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%; padding: 10px 0 0 20px;">
+              <div style="font-size: 25px; font-weight: 1000;">
+              {{product.productName}}
+              </div>
+              <div style="margin-top: 10px;">
+                {{product.shortDesc}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- For Desktop Screen View -->
+        <div class="product-details" *ngIf="innerWidth> 900">
+         Weight: {{product.weight}}
+        </div>
+        <div class="product-details" *ngIf="innerWidth> 900">
+          Qty: {{product.pieces}}
+        </div>
+        <div class="product-details" *ngIf="innerWidth> 900">
+          र. {{product.specialPrice}}
+        </div>
+        <!-- For Mobile Screen View -->
+        <div *ngIf="innerWidth< 900" style="display: flex; flex-direction: column;">
+          <div class="mobile-product-name">
+            {{product.productName}}
+          </div>
+          <div style="padding-top: 10px;" class="mobile-product-details">
+           <span>
+            <span>
+              Weight :
+            </span>
+            <span>
+              {{product.weight}}
+            </span>
+           </span>
+           <span>
+            <span>
+              Qty :
+            </span>
+            <span>
+              {{product.pieces}}
+            </span>
+           </span>
+           <span>
+            र. {{product.specialPrice}}
+           </span>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="main-card-item" style="justify-content: center;">
+           <a style="padding: 0; font-size: 18px;"
+             *ngIf="data.getOrderDetailsByID.is_cancel == 0 && !data.getOrderDetailsByID.awb_id"
+             class="pointer"
+             (click)="cancelSingleOrder(data.getOrderDetailsByID.order_id)">
+             Cancel Order
+         </a>
+           <a style="padding: 0; font-size: 18px; height: 50%;"
+             *ngIf="data.getOrderDetailsByID.is_cancel == 1">
+             Order is Cancelled
+       </a>
+         </div>
+    </div>
+  </div>
+
+  <div *ngIf="!orderDetails || !(orderDetails.length>0)">
+    <div style="display: flex ; flex-direction: column; padding: 10px;">
+      <div class="text-center not-purchased">You have not purchased anything yet</div>
+      <img src="../../assets/img/cms/notyetpurchased.jpg" width="40%" alt="" srcset="">
+    </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

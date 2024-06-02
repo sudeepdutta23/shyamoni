@@ -1,0 +1,229 @@
+<div class="elementor elementor-8020103" [ngStyle]="{'margin-bottom': !productDetails?'440px':'0px'}">
+  <div class="elementor-inner">
+    <div class="elementor-section-wrap">
+      <section
+        data-id="y6otx8h"
+        class="elementor-element elementor-element-y6otx8h elementor-section-stretched elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+        data-element_type="section"
+        style="width: 375px; left: 0px"
+      >
+        <div class="elementor-container elementor-column-gap-default">
+          <div class="elementor-row">
+            <div
+              data-id="6cy3tsl"
+              class="elementor-element elementor-element-6cy3tsl elementor-column elementor-col-100 elementor-top-column"
+              data-element_type="column"
+            >
+              <div class="elementor-column-wrap elementor-element-populated">
+                <div class="elementor-widget-wrap">
+                  <div
+                    data-id="nrtm3uo"
+                    class="elementor-element elementor-element-nrtm3uo elementor-widget elementor-widget-text-editor"
+                    data-element_type="text-editor.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="elementor-text-editor elementor-clearfix">
+                        <p>
+                          {{midheader}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        data-id="lgcruva"
+        class="elementor-element elementor-element-lgcruva elementor-section-stretched elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+        data-element_type="section"
+        *ngIf="bannerData"
+      >
+        <ngx-slick-carousel
+          class="carousel"
+          #slickModal="slick-carousel"
+          [config]="slideConfig"
+        >
+          <div ngxSlickItem *ngFor="let slide of bannerData" class="slide">
+            <img src="{{ slide?.imagePath }}" alt="" width="100%" />
+          </div>
+        </ngx-slick-carousel>
+      </section>
+      <section
+        data-id="yyflgnx"
+        class="elementor-element elementor-element-yyflgnx elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+        data-element_type="section"
+      >
+        <div class="elementor-container elementor-column-gap-default">
+          <div class="elementor-row nowrap" style="justify-content: center;">
+            <div
+              data-id="vwmjsji"
+              class="elementor-element elementor-element-vwmjsji elementor-column elementor-col-25 elementor-top-column"
+              data-element_type="column"
+            >
+              <div class="elementor-column-wrap elementor-element-populated">
+                <div class="elementor-widget-wrap">
+                  <div
+                    data-id="nofnrco"
+                    class="elementor-element elementor-element-nofnrco elementor-position-left elementor-vertical-align-top elementor-widget elementor-widget-image-box"
+                    data-element_type="image-box.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                          <img
+                            src="{{env.fastShipping}}"
+                            loading="lazy"
+                            alt=""
+                          />
+                        </figure>
+                        <div class="elementor-image-box-content">
+                          <h3 class="elementor-image-box-title">
+                            Fast Shipping
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-id="lhcimns"
+              class="elementor-element elementor-element-lhcimns elementor-column elementor-col-25 elementor-top-column"
+              data-element_type="column"
+            >
+              <div class="elementor-column-wrap elementor-element-populated">
+                <div class="elementor-widget-wrap">
+                  <div
+                    data-id="eoyukvl"
+                    class="elementor-element elementor-element-eoyukvl elementor-position-left elementor-vertical-align-top elementor-widget elementor-widget-image-box"
+                    data-element_type="image-box.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                          <img
+                            src="{{env.trustScore}}"
+                            loading="lazy"
+                            alt=""
+                            class="mobile-view-center-icon"
+                          />
+                        </figure>
+                        <div class="elementor-image-box-content">
+                          <h3 class="elementor-image-box-title">
+                            4.9 / 5 TrustScore
+                          </h3>
+                          <!-- <div class="elementor-image-box-description">
+                            Rated “Excellent” on Trustpilot
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-id="misludm"
+              class="elementor-element elementor-element-misludm elementor-column elementor-col-25 elementor-top-column"
+              data-element_type="column"
+            >
+              <div class="elementor-column-wrap elementor-element-populated">
+                <div class="elementor-widget-wrap">
+                  <div
+                    data-id="yneacux"
+                    class="elementor-element elementor-element-yneacux elementor-position-left elementor-vertical-align-top elementor-widget elementor-widget-image-box"
+                    data-element_type="image-box.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="elementor-image-box-wrapper">
+                        <figure class="elementor-image-box-img">
+                          <img
+                            src="{{env.securePayment}}"
+                            loading="lazy"
+                            alt=""
+                          />
+                        </figure>
+                        <div class="elementor-image-box-content">
+                          <h3 class="elementor-image-box-title">
+                            100% Secure Payment
+                          </h3>
+                          <!-- <div class="elementor-image-box-description">
+                            Your payment are safe with us
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="elementor-widget-container mb-3">
+        <div class="pos-title-widget pos-title-1">
+          <h4 class="pos-title text-center new-Arr">Our Best Selling Products</h4>
+          <p class="pos-subtitle text-center new-Arr-desc">
+            <!-- All our best selling products lineup -->
+          </p>
+        </div>
+      </div>
+      <ngx-slick-carousel
+          class="carousel"
+          #slickModal1="slick-carousel"
+          [config]="slideConfig1"
+          *ngIf="productDetails"
+        >
+          <div ngxSlickItem *ngFor="let product of productDetails" class="slide">
+             <app-product-card [product]="product" style='width="10%"' ></app-product-card>
+          </div>
+        </ngx-slick-carousel>
+    </div>
+  </div>
+</div>
+
+<section data-id="isfn9l5"
+								class="elementor-element elementor-element-isfn9l5 elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+								data-element_type="section">
+
+								<div class="elementor-container elementor-column-gap-default">
+									<div class="elementor-row">
+										<div data-id="y6loc6o"
+											class="elementor-element elementor-element-y6loc6o elementor-column elementor-col-100 elementor-top-column"
+											data-element_type="column">
+											<div class="elementor-column-wrap elementor-element-populated">
+												<div class="elementor-widget-wrap">
+													<div data-id="rrw8d5p"
+														class="elementor-element elementor-element-rrw8d5p elementor-widget elementor-widget-pos_title mt-3"
+														data-element_type="pos_title.default">
+														<div class="elementor-widget-container">
+															<div class="pos-title-widget pos-title-1">
+																<h4 class="pos-title text-center new-Arr">Our Products</h4>
+																<!-- <p class="pos-subtitle text-center new-Arr-desc">Add our new arrivals to your
+																	weekly lineup</p> -->
+															</div>
+														</div>
+													</div>
+													<div data-id="yjlbmni"
+														class="elementor-element elementor-element-yjlbmni slider-arrows-top elementor-widget elementor-widget-pos_products"
+														data-settings="{&quot;items&quot;:&quot;4&quot;,&quot;responsive&quot;:&quot;custom&quot;,&quot;items_laptop&quot;:&quot;5&quot;,&quot;items_landscape_tablet&quot;:&quot;4&quot;,&quot;items_portrait_tablet&quot;:&quot;3&quot;,&quot;items_landscape_mobile&quot;:&quot;2&quot;,&quot;items_portrait_mobile&quot;:&quot;2&quot;,&quot;items_small_mobile&quot;:&quot;1&quot;,&quot;slides_to_scroll&quot;:&quot;1&quot;}"
+														data-element_type="pos_products.default">
+														<div class="elementor-widget-container">
+															<div class="pos-product-widget">
+																<app-ourproducts [homeview]="true"></app-ourproducts>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

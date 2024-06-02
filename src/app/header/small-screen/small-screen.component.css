@@ -1,0 +1,23 @@
+.badge-cart {
+    top: 13px;
+    left: 14px;
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #ed2353;
+    position: absolute;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.cart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+  }

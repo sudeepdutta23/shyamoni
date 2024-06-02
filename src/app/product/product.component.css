@@ -1,0 +1,37 @@
+#posnewsletterpopup {
+	width: 100%;
+	background-repeat: no-repeat;
+	max-width: 750px; 	height: 450px; 	background-color: #ffffff;     
+    /* background-image: url("../../../img/cms/flo-popup.jpg");      */
+    background-position: center right;     }
+#poscookielaw {
+	background-color: #908E8F;     color: #ffffff; }
+#poscookielaw p {
+    color: #ffffff; }
+.animation1 {
+	 -webkit-transition-duration: 500ms !important;
+    -moz-transition-duration: 500ms !important;
+    -o-transition-duration: 500ms !important;
+    transition-duration: 500ms !important;
+}
+.quickmenu-mobile-wrapper .quickmenu-item .block-title{
+    color: #253237;
+}
+/* .scrolll{scroll-behavior:smooth} */
+
+@media (max-width: 766px){
+    .image-width{
+        width: 100vw;
+    }
+}
+
+@media (min-width: 766px){
+    .image-width{
+        width: 38vw;
+    }
+}
+
+.share-icon{
+    font-size: 9px;
+    font-weight: 500;
+}

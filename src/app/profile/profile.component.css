@@ -1,0 +1,63 @@
+.dot {
+    /* height: 25px;
+    width: 25px; */
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  ngx-dropzone,
+.custom-dropzone {
+  /* margin: 20px;
+  margin-left: 15em;
+  margin-right: 15em; */
+  width: 100%;
+}
+
+.custom-dropzone {
+	height: 60px;
+    width: 1px;
+	background:  #fff;
+	/* color:#333; */
+	/* border: 5px dashed #333(235, 79, 79); */
+	/* border-radius: 5px; */
+	font-size: 20px;
+}
+
+.center {
+    width: 100%;
+    justify-content: center;
+  }
+  :host ::ng-deep .custom-dropzone{
+    border: none;
+  }
+  :hover.backgr{
+    background-color: greenyellow !important;
+    color: aliceblue;
+    cursor: pointer;
+  }
+
+  .profile-field{
+    padding: 15px;
+  }
+
+  .label{
+    margin-right: 25px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .wrapper {
+    padding: 10px;
+  }
+  
+  .image--cover {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 20px;
+  
+    object-fit: cover;
+    object-position: center right;
+  }
